@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FİNAL REPORT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="ISE-311.css">
+    <style>
+                table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container clearfix">
+            <div id="logo-box">
+                <a href="/" class="logo text-uppercase">
+                    HOSPITAL DATABASE
+                </a>
+            </div>
+            <div id="nav-links">
+                <ul>
+                    <li class="nav-item">
+                        <a href="#implementation" class="nav-link">
+                            Implementation
+                        </a><!-- link olduğu için a etiketi kullanırız.-->
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tables" class="nav-link">
+                            Tables
+                        </a><!-- link olduğu için a etiketi kullanırız.-->
+                    </li>
+                    <li class="nav-item">
+                        <a href="#relation-tables" class="nav-link">
+                             Relation Tables
+                        </a><!-- link olduğu için a etiketi kullanırız.-->
+                    </li>
+                    <li class="nav-item">
+                        <a href="#queries" class="nav-link">
+                            Queries
+                        </a><!-- link olduğu için a etiketi kullanırız.-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	
+    <section id="about">
+	<div>
+	<ul align="justify"> 
+
+<li ><br><br>
+<h3 >Definition:</h3> 
+<p text-indent=1cm>
+Feedback from both hospital staff and patients has brought to light existing challenges in organizing information within our facility, particularly in the management of details concerning doctors, patients, drugs, and nurses. These difficulties have tangible effects on the efficiency of healthcare services and patient care. Recognizing the imperative for improvement, we are actively considering the implementation of a specially designed database system to address these specific concerns. The goal is to enhance the overall organization and accessibility of critical healthcare data. This potential solution aims to offer a tailored approach to more effectively manage data related to doctors, patients, drugs, and nurses. This, in turn, is expected to facilitate more efficient daily operations for hospital staff and improved access for patients, ultimately enhancing healthcare services and patient care.
+<br><br>
+</p><h3>System Explanation and Description:</h3>
+
+<ul>
+<li>The hospital is structured into departments, each overseen by a doctor. Each department has a secretary, a phone number, and is associated with a specific doctor. 
+</li><li>Doctors are crucial members of the hospital staff, identified by a unique Doctor ID. We store their SSN, full name (composed of Name and Surname), Birth Date, Gender, 
+Phone Number, Salary, and Title. Each doctor is assigned to a specific department.
+</li><li>Patients are individuals receiving medical care at the hospital. Patient records include SSN, full name (Name and Surname), Birth Date, Gender, Phone Number,
+and Blood Type.
+</li><li>Nurses are essential members of the medical staff. Each nurse is identified by an ID and has associated attributes, including SSN, full name (Name and Surname), 
+Birth Date, Gender, Phone Number and Salary.
+</li><li>The hospital maintains a Pharmacy, which provides medicines to patients. The Pharmacy is identified by its Phone Number and stores information about Medicine Prices 
+and the Number of Medicines available.
+</li><li>Medicines, each identified by a unique Trade Number are sold at the Pharmacy. Each medicine also has additional detail in the form of it's formula.
+</li><li>The hospital also manages a Medical Supply Warehouse with a unique Warehouse ID, responsible for storing medical supplies. Each supply is identified by a unique Medical Supply ID, and information
+such as Expiration Date and amount are recorded.
+</li><li>Relationships exist between these entities, with departments being managed by doctors, nurses working in collaboration with doctors and patients being attended 
+to by doctors. The Pharmacy supplies medicines to patients. The Medical Supply Warehouse provides necessary medical supplies to departments to support the hospital's operations.
+</li></ul>
+</div>
+        <h2 class="text-uppercase">
+           E/R DIAGRAM
+        </h2>
+        <hr class="star-line">
+
+        <div id="about-text" class="clearfix">
+            <div class="center">
+                <p class="text" style="text-align:center;margin-right: auto;margin-left: auto;">
+                </p>
+                <img src="er_diagram.png" alt="ER Diagram" style="display: block; margin: auto; width: 800px; height: 850px; border-color:black; border-style:solid ">
+            </div>
+            <div class="right">
+                <p class="text">
+                   </p>
+            </div>
+        </div>
+
+    </section>
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="text-uppercase" id="implementation">
+                IMPLEMENTATION 
+            </h2>
+            <hr class="dark-star-line">
+            <h2> </h2>
+<div style="text-align: justify;">
+<h3> DOCTORS </h3>
+<p>CREATE TABLE DOCTORS <br>
+(
+    SSN	VARCHAR(512),<br>
+    Doctor_ID	VARCHAR(512),<br>
+    Full_Name	VARCHAR(512),<br>
+    Birth_Date	VARCHAR(512),<br>
+    Gender	VARCHAR(512),<br>
+    Title	VARCHAR(512),<br>
+    Salary	INT,<br>
+    Nurse 	VARCHAR(512)<br>
+	PRIMARY KEY(SSN)<br>
+);<br>
+<br>
+INSERT INTO DOCTORS (SSN, Doctor_ID, Full_Name, Birth_Date, Gender, Title, Salary, Nurse ) VALUES<br>
+	('123-45-6789', 'D001', 'Dr. John Smith', '1970-05-15', 'Male', 'General Surgeon', '150000', 'N001 '),<br>
+	('987-65-4321', 'D002', 'Dr. Sarah Johnson', '1985-08-22', 'Female', 'Cardiologist', '120000', 'N002 '),<br>
+	('543-21-9876', 'D003', 'Dr. Robert Davis', '1978-12-10', 'Male', 'Pediatrician', '130000', 'N003 '),<br>
+	('654-32-1098', 'D004', 'Dr. Emily Rodriguez', '1982-06-25', 'Female', 'Neurologist', '160000', 'N004 '),<br>
+	('876-54-3210', 'D005', 'Dr. Maria Garcia', '1989-03-08', 'Female', 'Oncologist', '140000', 'N005 '),<br>
+	('321-09-8765', 'D006', 'Dr. Michael Brown', '1975-11-18', 'Male', 'Dermatologist', '155000', 'N006');<br>
+	</p>
+	<br><br>
+<h3> PATIENTS </h3>
+<p>
+CREATE TABLE PATIENTS <br>
+(<br>
+    SSN	VARCHAR(512),<br>
+    Full_Name	VARCHAR(512),<br>
+    Birth_Date	VARCHAR(512),<br>
+    Gender	VARCHAR(512),<br>
+    Blood_Type	VARCHAR(512),<br>
+    Doctor 	VARCHAR(512)<br>
+);
+<br><br>
+INSERT INTO PATIENTS (SSN, Full_Name, Birth_Date, Gender, Blood_Type, Doctor ) VALUES<br>
+	('234-56-7890', 'Alice Thompson', '1982-03-10', 'Female', 'A+', 'D001 '),<br>
+	('345-67-8901', 'Bob Williams', '1990-12-05', 'Male', 'B-', 'D002 '),<br>
+	('876-54-3210', 'Linda Miller', '1975-09-18', 'Female', 'AB+', 'D003 '),<br>
+	('109-87-6543', 'James Turner', '1988-04-30', 'Male', 'O-', 'D004 '),<br>
+	('567-89-0123', 'Emma Davis', '1995-07-15', 'Female', 'O+', 'D005 '),<br>
+	('890-12-3456', 'Andrew Wilson', '1980-02-20', 'Male', 'A-', 'D006');<br>
+</p>
+<br><br>
+<h3> NURSES </h3>
+<p>
+CREATE TABLE NURSES <br>
+(<br>
+    SSN	VARCHAR(512),<br>
+    Nurse_ID	VARCHAR(512),<br>
+    Full_Name	VARCHAR(512),<br>
+    Birth_Date	VARCHAR(512),<br>
+    Gender	VARCHAR(512),<br>
+    Salary 	INT<br>
+);
+<br><br>
+INSERT INTO NURSES (SSN, Nurse_ID, Full_Name, Birth_Date, Gender, Salary ) VALUES<br>
+	('111-22-3333', 'N001', 'Nurse Emily Brown', '1988-07-20', 'Female', '80000 '),<br>
+	('444-55-6666', 'N002', 'Nurse Michael Lee', '1995-04-18', 'Male', '75000 '),<br>
+	('222-33-4444', 'N003', 'Nurse Jessica Martinez', '1983-11-05', 'Female', '78000 '),<br>
+	('555-66-7777', 'N004', 'Nurse Brian Wilson', '1990-08-15', 'Male', '82000 '),<br>
+	('777-88-9999', 'N005', 'Nurse Olivia Rodriguez', '1987-12-22', 'Female', '79000 '),<br>
+	('999-00-1111', 'N006', 'Nurse Daniel Smith', '1993-03-25', 'Male', '76000');<br>
+</p>
+<br><br>
+<h3> DEPARTMENTS </h3>
+
+<p>
+CREATE TABLE DEPARTMENTS <br>
+(<br>
+    Department_Number	INT,<br>
+    Secretary	VARCHAR(512),<br>
+    DOC_ID	VARCHAR(512),<br>
+    NUR_ID 	VARCHAR(512)<br>
+);<br>
+<br>
+INSERT INTO DEPARTMENTS (Department_Number, Secretary, DOC_ID, NUR_ID ) VALUES<br>
+	('101', '111-22-3333', 'D001', 'N001 '),<br>
+	('102', '444-55-6666', 'D002', 'N002 '),<br>
+	('103', '222-33-4444', 'D003', 'N003 '),<br>
+	('104', '555-66-7777', 'D004', 'N004 '),<br>
+	('105', '777-88-9999', 'D005', 'N005 '),<br>
+	('106', '999-00-1111', 'D006', 'N006');<br>
+</p>
+
+<br><br>
+<h3> PHARMACY </h3>
+<p>
+CREATE TABLE PHARMACY<br>
+(<br>
+    Pharmacy_Name	VARCHAR(512),<br>
+    Available_Stock	INT,<br>
+    Phone_Number	VARCHAR(512),<br>
+    Patient_SSN 	VARCHAR(512)<br>
+);<br>
+<br>
+INSERT INTO PHARMACY (Pharmacy_Name, Available_Stock, Phone_Number, Patient_SSN ) VALUES<br>
+	('ABC Pharmacy', '1000', '555-123-4567', '234-56-7890 '),<br>
+	('ABC Pharmacy', '1000', '555-987-6543', '345-67-8901 '),<br>
+	('ABC Pharmacy', '1000', '555-555-5555', '876-54-3210 '),<br>
+	('ABC Pharmacy', '1000', '555-777-8888', '109-87-6543 '),<br>
+	('ABC Pharmacy', '1000', '555-111-2222', '567-89-0123'),<br>
+	('ABC Pharmacy', '1000', '555-333-4444', '890-12-3456');<br>
+
+</p>
+<br><br>
+<h3> MEDICINE </h3>
+<p>
+CREATE TABLE MEDICINE <br>
+(<br>
+    Trade_Number	VARCHAR(512),<br>
+    Formula	VARCHAR(512),<br>
+    Price 	FLOAT<br>
+);<br>
+<br>
+INSERT INTO MEDICINE (Trade_Number, Formula, Price ) VALUES<br>
+	('M001', 'Acetaminophen 500mg', '5.00 '),<br>
+	('M002', 'Simvastatin 20mg', '10.50 '),<br>
+	('M003', 'Ibuprofen 200mg', '4.50 '),<br>
+	('M004', 'Amoxicillin 500mg', '7.20 '),<br>
+	('M005', 'Aspirin 81mg', '3.75 '),<br>
+	('M006', 'Lisinopril 10mg', '8.90');<br>
+</p>
+
+<br><br>
+<h3> MEDICAL_SUPPLY_WAREHOUSE </h3>
+
+<p>
+CREATE TABLE MEDICAL_SUPPLY_WAREHOUSE<br>
+(<br>
+    Warehouse_ID	VARCHAR(512),<br>
+    Medical_Supply_Amount	INT,<br>
+    Medical_Supply_ID	VARCHAR(512),<br>
+    Expiration_Date	VARCHAR(512),<br>
+    Department 	INT<br>
+);<br>
+<br>
+INSERT INTO MEDICAL_SUPPLY_WAREHOUSE (Warehouse_ID, Medical_Supply_Amount, Medical_Supply_ID, Expiration_Date, Department ) VALUES<br>
+	('W001', '5000', 'MS001', '2025-06-30', '101 '),<br>
+	('W002', '3000', 'MS002', '2024-12-15', '102 '),<br>
+	('W003', '4000', 'MS003', '2023-08-20', '103 '),<br>
+	('W004', '6000', 'MS004', '2024-05-10', '104 '),<br>
+	('W005', '3500', 'MS005', '2023-11-28', '105 '),<br>
+	('W006', '4500', 'MS006', '2024-09-12', '106');<br>
+</p>
+<br><br>
+
+<h2> RELATIONS: </h2>
+<br>
+<h3> WORK_TOGETHER </h3>
+<p>
+CREATE TABLE WORK_TOGETHER <br>
+(<br>
+    Doctor_SSN	VARCHAR(512),<br>
+    Nurse_SSN 	VARCHAR(512)<br>
+);<br>
+<br>
+INSERT INTO WORK_TOGETHER (Doctor_SSN, Nurse_SSN ) VALUES<br>
+	('123-45-6789', '111-22-3333 '),<br>
+	('987-65-4321', '444-55-6666 '),<br>
+	('543-21-9876', '222-33-4444 '),<br>
+	('654-32-1098', '555-66-7777 '),<br>
+	('876-54-3210', '777-88-9999 '),<br>
+	('321-09-8765', '999-00-1111');<br>
+</p>
+<br><br>
+
+<h3> HAS </h3>
+
+<p>
+CREATE TABLE HAS <br>
+(<br>
+    Nurse_SSN	VARCHAR(512),<br>
+    Dept_Number 	INT<br>
+);<br>
+<br>
+INSERT INTO HAS (Nurse_SSN, Dept_Number ) VALUES<br>
+	('111-22-3333', '101 '),<br>
+	('444-55-6666', '102 '),<br>
+	('222-33-4444', '103 '),<br>
+	('555-66-7777', '104 '),<br>
+	('777-88-9999', '105 '),<br>
+	('999-00-1111', '106');<br>
+</p>
+<br><br>
+
+<h3> SELL </h3>
+
+<p>
+CREATE TABLE SELL <br>
+(<br>
+    Formula	VARCHAR(512),<br>
+    Trade_Number	VARCHAR(512),<br>
+    Pharmacy_Name 	VARCHAR(512)<br>
+);<br>
+<br>
+INSERT INTO SELL (Formula, Trade_Number, Pharmacy_Name ) VALUES<br>
+	('Acetaminophen 500mg', 'M001', 'ABC Pharmacy '),<br>
+	('Simvastatin 20mg', 'M002', 'ABC Pharmacy '),<br>
+	('Ibuprofen 200mg', 'M003', 'ABC Pharmacy '),<br>
+	('Amoxicillin 500mg', 'M004', 'ABC Pharmacy '),<br>
+	('Aspirin 81mg', 'M005', 'ABC Pharmacy '),<br>
+	('Lisinopril 10mg', 'M006', 'ABC Pharmacy');<br>
+</p>
+<br><br>
+<h3> ORDERS </h3>
+
+<p>
+CREATE TABLE ORDERS <br>
+(<br>
+    Warehouse_ID	VARCHAR(512),<br>
+    Dept_Number 	INT<br>
+);<br>
+<br>
+INSERT INTO ORDERS (Warehouse_ID, Dept_Number ) VALUES<br>
+	('W001', '101 '),<br>
+	('W002', '102 '),<br>
+	('W003', '103 '),<br>
+	('W004', '104 '),<br>
+	('W005', '105 '),<br>
+	('W006', '106');<br>
+</p>
+<br><br>
+
+<h3> SELLS_TO </h3>
+
+<p>
+CREATE TABLE SELLS_TO <br>
+(<br>
+    Patient_SSN	VARCHAR(512),<br>
+    Pharmacy_Name 	VARCHAR(512)<br>
+);<br>
+<br>
+INSERT INTO SELLS_TO (Patient_SSN, Pharmacy_Name ) VALUES<br>
+	('234-56-7890', 'ABC Pharmacy '),<br>
+	('345-67-8901', 'ABC Pharmacy '),<br>
+	('876-54-3210', 'ABC Pharmacy '),<br>
+	('109-87-6543', 'ABC Pharmacy '),<br>
+	('567-89-0123', 'ABC Pharmacy '),<br>
+	('890-12-3456', 'ABC Pharmacy');<br>
+</p>
+
+<br><br>
+<h3> MANAGES </h3>
+
+<p>
+CREATE TABLE MANAGES <br>
+(<br>
+    Doctor_SSN	VARCHAR(512),<br>
+    Dept_Number 	INT<br>
+);<br>
+<br>
+INSERT INTO MANAGES (Doctor_SSN, Dept_Number ) VALUES<br>
+	('123-45-6789', '101 '),<br>
+	('987-65-4321', '102 '),<br>
+	('543-21-9876', '103 '),<br>
+	('654-32-1098', '104 '),<br>
+	('876-54-3210', '105 '),<br>
+	('321-09-8765', '106');<br>
+</p>
+           
+    </section>
+    <h2 align = center style="color:#2D3D4F" ><a href = "#top" > GO BACK TO TOP </a></h2>
+</div>
+<div style="text-align: justify;">
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="text-uppercase" id="tables">
+                TABLES
+            </h2><br>
+            <hr class="dark-star-line">
+            <h2>Doctors Information</h2>
+    
+    <table>
+        <tr>
+            <th>SSN</th>
+            <th>Doctor_ID</th>
+            <th>Full_Name</th>
+            <th>Birth_Date</th>
+            <th>Gender</th>
+            <th>Title</th>
+            <th>Salary</th>
+            <th>Nurse</th>
+        </tr>
+        <tr>
+            <td>123-45-6789</td>
+            <td>D001</td>
+            <td>Dr. John Smith</td>
+            <td>1970-05-15</td>
+            <td>Male</td>
+            <td>General Surgeon</td>
+            <td>150,000</td>
+            <td>N001</td>
+        </tr>
+        <tr>
+            <td>987-65-4321</td>
+            <td>D002</td>
+            <td>Dr. Sarah Johnson</td>
+            <td>1985-08-22</td>
+            <td>Female</td>
+            <td>Cardiologist</td>
+            <td>120,000</td>
+            <td>N002</td>
+        </tr>
+        <tr>
+            <td>543-21-9876</td>
+            <td>D003</td>
+            <td>Dr. Robert Davis</td>
+            <td>1978-12-10</td>
+            <td>Male</td>
+            <td>Pediatrician</td>
+            <td>130,000</td>
+            <td>N003</td>
+        </tr>
+        <tr>
+            <td>654-32-1098</td>
+            <td>D004</td>
+            <td>Dr. Emily Rodriguez</td>
+            <td>1982-06-25</td>
+            <td>Female</td>
+            <td>Neurologist</td>
+            <td>160,000</td>
+            <td>N004</td>
+        </tr>
+        <tr>
+            <td>876-54-3210</td>
+            <td>D005</td>
+            <td>Dr. Maria Garcia</td>
+            <td>1989-03-08</td>
+            <td>Female</td>
+            <td>Oncologist</td>
+            <td>140,000</td>
+            <td>N005</td>
+        </tr>
+        <tr>
+            <td>321-09-8765</td>
+            <td>D006</td>
+            <td>Dr. Michael Brown</td>
+            <td>1975-11-18</td>
+            <td>Male</td>
+            <td>Dermatologist</td>
+            <td>155,000</td>
+            <td>N006</td>
+        </tr>
+    </table>
+<br>
+    <h2>Patients Information</h2>
+    
+    <table>
+        <tr>
+            <th>SSN</th>
+            <th>Full_Name</th>
+            <th>Birth_Date</th>
+            <th>Gender</th>
+            <th>Blood_Type</th>
+            <th>Doctor</th>
+        </tr>
+        <tr>
+            <td>234-56-7890</td>
+            <td>Alice Thompson</td>
+            <td>1982-03-10</td>
+            <td>Female</td>
+            <td>A+</td>
+            <td>D001</td>
+        </tr>
+        <tr>
+            <td>345-67-8901</td>
+            <td>Bob Williams</td>
+            <td>1990-12-05</td>
+            <td>Male</td>
+            <td>B-</td>
+            <td>D002</td>
+        </tr>
+        <tr>
+            <td>876-54-3210</td>
+            <td>Linda Miller</td>
+            <td>1975-09-18</td>
+            <td>Female</td>
+            <td>AB+</td>
+            <td>D003</td>
+        </tr>
+        <tr>
+            <td>109-87-6543</td>
+            <td>James Turner</td>
+            <td>1988-04-30</td>
+            <td>Male</td>
+            <td>O-</td>
+            <td>D004</td>
+        </tr>
+        <tr>
+            <td>567-89-0123</td>
+            <td>Emma Davis</td>
+            <td>1995-07-15</td>
+            <td>Female</td>
+            <td>O+</td>
+            <td>D005</td>
+        </tr>
+        <tr>
+            <td>890-12-3456</td>
+            <td>Andrew Wilson</td>
+            <td>1980-02-20</td>
+            <td>Male</td>
+            <td>A-</td>
+            <td>D006</td>
+        </tr>
+    </table>
+<br>
+    <h2>Nurses Information</h2>
+    <table>
+        <tr>
+            <th>SSN</th>
+            <th>Nurse_ID</th>
+            <th>Full_Name</th>
+            <th>Birth_Date</th>
+            <th>Gender</th>
+            <th>Salary</th>
+        </tr>
+        <tr>
+            <td>111-22-3333</td>
+            <td>N001</td>
+            <td>Nurse Emily Brown</td>
+            <td>1988-07-20</td>
+            <td>Female</td>
+            <td>80,000</td>
+        </tr>
+        <tr>
+            <td>444-55-6666</td>
+            <td>N002</td>
+            <td>Nurse Michael Lee</td>
+            <td>1995-04-18</td>
+            <td>Male</td>
+            <td>75,000</td>
+        </tr>
+        <tr>
+            <td>222-33-4444</td>
+            <td>N003</td>
+            <td>Nurse Jessica Martinez</td>
+            <td>1983-11-05</td>
+            <td>Female</td>
+            <td>78,000</td>
+        </tr>
+        <tr>
+            <td>555-66-7777</td>
+            <td>N004</td>
+            <td>Nurse Brian Wilson</td>
+            <td>1990-08-15</td>
+            <td>Male</td>
+            <td>82,000</td>
+        </tr>
+        <tr>
+            <td>777-88-9999</td>
+            <td>N005</td>
+            <td>Nurse Olivia Rodriguez</td>
+            <td>1987-12-22</td>
+            <td>Female</td>
+            <td>79,000</td>
+        </tr>
+        <tr>
+            <td>999-00-1111</td>
+            <td>N006</td>
+            <td>Nurse Daniel Smith</td>
+            <td>1993-03-25</td>
+            <td>Male</td>
+            <td>76,000</td>
+        </tr>
+    </table>
+  <br>
+    <h2>Departments Information</h2>
+    <table>
+        <tr>
+            <th>Department_Number</th>
+            <th>Secretary</th>
+            <th>DOC_ID</th>
+            <th>NUR_ID</th>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>111-22-3333</td>
+            <td>D001</td>
+            <td>N001</td>
+        </tr>
+        <tr>
+            <td>102</td>
+            <td>444-55-6666</td>
+            <td>D002</td>
+            <td>N002</td>
+        </tr>
+        <tr>
+            <td>103</td>
+            <td>222-33-4444</td>
+            <td>D003</td>
+            <td>N003</td>
+        </tr>
+        <tr>
+            <td>104</td>
+            <td>555-66-7777</td>
+            <td>D004</td>
+            <td>N004</td>
+        </tr>
+        <tr>
+            <td>105</td>
+            <td>777-88-9999</td>
+            <td>D005</td>
+            <td>N005</td>
+        </tr>
+        <tr>
+            <td>106</td>
+            <td>999-00-1111</td>
+            <td>D006</td>
+            <td>N006</td>
+        </tr>
+    </table><br>
+
+    <h2>Pharmacy Information</h2>
+    <table>
+        <tr>
+            <th>Pharmacy_Name</th>
+            <th>Available_Stock</th>
+            <th>Phone_Number</th>
+            <th>Patients.SSN</th>
+        </tr>
+        <tr>
+            <td>ABC Pharmacy</td>
+            <td>1000</td>
+            <td>555-123-4567</td>
+            <td>234-56-7890</td>
+        </tr>
+        <tr>
+            <td>ABC Pharmacy</td>
+            <td>1000</td>
+            <td>555-987-6543</td>
+            <td>345-67-8901</td>
+        </tr>
+        <tr>
+            <td>ABC Pharmacy</td>
+            <td>1000</td>
+            <td>555-555-5555</td>
+            <td>876-54-3210</td>
+        </tr>
+        <tr>
+            <td>ABC Pharmacy</td>
+            <td>1000</td>
+            <td>555-777-8888</td>
+            <td>109-87-6543</td>
+        </tr>
+        <tr>
+            <td>ABC Pharmacy</td>
+            <td>1000</td>
+            <td>555-111-2222</td>
+            <td>567-89-0123</td>
+        </tr>
+        <tr>
+            <td>ABC Pharmacy</td>
+            <td>1000</td>
+            <td>555-333-4444</td>
+            <td>890-12-3456</td>
+        </tr>
+    </table>
+<br>
+    <h2>Medicine Information</h2>
+    <table>
+        <tr>
+            <th>Trade_Number</th>
+            <th>Formula</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>M001</td>
+            <td>Acetaminophen 500mg</td>
+            <td>5.00</td>
+        </tr>
+        <tr>
+            <td>M002</td>
+            <td>Simvastatin 20mg</td>
+            <td>10.50</td>
+        </tr>
+        <tr>
+            <td>M003</td>
+            <td>Ibuprofen 200mg</td>
+            <td>4.50</td>
+        </tr>
+        <tr>
+            <td>M004</td>
+            <td>Amoxicillin 500mg</td>
+            <td>7.20</td>
+        </tr>
+        <tr>
+            <td>M005</td>
+            <td>Aspirin 81mg</td>
+            <td>3.75</td>
+        </tr>
+        <tr>
+            <td>M006</td>
+            <td>Lisinopril 10mg</td>
+            <td>8.90</td>
+        </tr>
+    </table><br>
+    <h2>Medical Supply Warehouse Information</h2>
+    <table>
+        <tr>
+            <th>Warehouse_ID</th>
+            <th>Medical_Supply_Amount</th>
+            <th>Medical_Supply_ID</th>
+            <th>Expiration_Date</th>
+            <th>Department</th>
+        </tr>
+        <tr>
+            <td>W001</td>
+            <td>5000</td>
+            <td>MS001</td>
+            <td>2025-06-30</td>
+            <td>101</td>
+        </tr>
+        <tr>
+            <td>W002</td>
+            <td>3000</td>
+            <td>MS002</td>
+            <td>2024-12-15</td>
+            <td>102</td>
+        </tr>
+        <tr>
+            <td>W003</td>
+            <td>4000</td>
+            <td>MS003</td>
+            <td>2023-08-20</td>
+            <td>103</td>
+        </tr>
+        <tr>
+            <td>W004</td>
+            <td>6000</td>
+            <td>MS004</td>
+            <td>2024-05-10</td>
+            <td>104</td>
+        </tr>
+        <tr>
+            <td>W005</td>
+            <td>3500</td>
+            <td>MS005</td>
+            <td>2023-11-28</td>
+            <td>105</td>
+        </tr>
+        <tr>
+            <td>W006</td>
+            <td>4500</td>
+            <td>MS006</td>
+            <td>2024-09-12</td>
+            <td>106</td>
+        </tr>
+    </table>
+            
+    </section>
+</div>
+<h2 align = center style="color:#e71fd3" ><a href = "#top" > GO BACK TO TOP </a></h2>
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="text-uppercase" id="relation-tables">
+                RELATIONS TABLES 
+            </h2>
+            <hr class="dark-star-line">
+            <h2>Work Together Table</h2>
+  <table style="text-align: center;">
+    <tr>
+      <th>Doctor_SSN</th>
+      <th>Nurse_SSN</th>
+    </tr>
+    <tr>
+      <td>123-45-6789</td>
+      <td>111-22-3333</td>
+    </tr>
+    <tr>
+ <td>987-65-4321</td>
+      <td>444-55-6666</td>
+    </tr>
+    <tr>
+      <td> 543-21-9876 </td>
+      <td> 222-33-4444 </td>
+    </tr>
+	<tr>
+      <td> 654-32-1098 </td>
+      <td> 555-66-7777 </td>
+    </tr>
+	<tr>
+      <td> 876-54-3210 </td>
+      <td> 777-88-9999 </td>
+    </tr>
+	<tr>
+      <td> 321-09-8765 </td>
+      <td> 999-00-1111 </td>
+    </tr>
+  </table>
+
+  <h2>Has Table</h2>
+  <table>
+    <tr>
+      <th>Nurse_SSN</th>
+      <th>Dept_Number</th>
+    </tr>
+<tr>
+      <td>111-22-3333</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <td>444-55-6666</td>
+      <td>102</td>
+    </tr>
+    <tr>
+      <td>222-33-4444</td>
+      <td>103</td>
+    </tr>
+	<tr>
+      <td>555-66-7777</td>
+      <td>104</td>
+    </tr>
+	<tr>
+      <td>777-88-9999</td>
+      <td>105</td>
+    </tr>
+	<tr>
+      <td>999-00-1111</td>
+      <td>106</td>
+    </tr>
+ </table>
+
+<h2>Sell Table</h2>
+  <table>
+    <tr>
+      <th>Formula</th>
+      <th>Trade_Number</th>
+	  <th>Pharmacy_Name</th>
+    </tr>
+     <tr>
+      <td>Acetaminophen 500mg</td>
+      <td>M001</td>
+      <td>ABC Pharmacy</td>
+    </tr>
+    <tr>
+      <td>Simvastatin 20mg</td>
+      <td>M002</td>
+      <td>ABC Pharmacy</td>
+    </tr>
+    <tr>
+      <td>Ibuprofen 200mg</td>
+      <td>M003</td>
+      <td>ABC Pharmacy</td>
+    </tr>
+    <tr>
+      <td>Amoxicillin 500mg</td>
+      <td>M004</td>
+ <td>ABC Pharmacy</td>
+    </tr>
+    <tr>
+      <td>Aspirin 81mg</td>
+      <td>M005</td>
+      <td>ABC Pharmacy</td>
+    </tr>
+    <tr>
+      <td>Lisinopril 10mg</td>
+      <td>M006</td>
+      <td>ABC Pharmacy</td>
+    </tr>
+</table>
+	
+<h2>Orders Table</h2>
+	<table>
+        <tr>
+            <th>Warehouse_ID</th>
+            <th>Dept_Number</th>
+        </tr>
+        <tr>
+            <td>W001</td>
+            <td>101</td>
+        </tr>
+        <tr>
+            <td>W002</td>
+            <td>102</td>
+			</tr>
+        <tr>
+            <td>W003</td>
+            <td>103</td>
+        </tr>
+        <tr>
+            <td>W004</td>
+            <td>104</td>
+        </tr>
+        <tr>
+            <td>W005</td>
+            <td>105</td>
+        </tr>
+        <tr>
+            <td>W006</td>
+            <td>106</td>
+        </tr>
+	</table>
+	
+<h2>Sells to Table</h2>
+    <table>
+        <tr>
+            <th>Patient_SSN</th>
+            <th>Pharmacy_Name</th>
+        </tr>
+        <tr>
+ <td>234-56-7890</td>
+            <td>ABC Pharmacy</td>
+        </tr>
+        <tr>
+            <td>345-67-8901</td>
+            <td>ABC Pharmacy</td>
+        </tr>
+        <tr>
+            <td>876-54-3210</td>
+            <td>ABC Pharmacy</td>
+        </tr>
+        <tr>
+            <td>109-87-6543</td>
+            <td>ABC Pharmacy</td>
+        </tr>
+        <tr>
+            <td>567-89-0123</td>
+            <td>ABC Pharmacy</td>
+        </tr>
+        <tr>
+            <td>890-12-3456</td>
+            <td>ABC Pharmacy</td>
+ </tr>
+    </table>
+	
+<h2>Manages Table</h2>
+  <table>
+    <tr>
+      <th>Doctor_SSN</th>
+      <th>Dept_Number</th>
+    </tr>
+    <tr>
+      <td>123-45-6789</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <td>987-65-4321</td>
+      <td>102</td>
+    </tr>
+    <tr>
+      <td>543-21-9876</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <td>654-32-1098</td>
+      <td>104</td>
+    </tr>
+    <tr>
+<td>876-54-3210</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <td>321-09-8765</td>
+      <td>106</td>
+    </tr>
+  </table>
+      
+    </section>
+    <section id="portfolio" >
+        <div class="container">
+            <h2 class="text-uppercase" id="queries">
+                QUESTIONS
+            </h2>
+            <hr class="dark-star-line">
+            <title>QUESTIONS</title>
+    
+	
+
+<br><h4 align="justify">A query that applies a row and column selection to a single table.</h4><br>
+    <h3 align="justify">Question 1: Write a query all attributes for doctors whose age is greater than 45.</h3>
+	
+<p align="justify"><em>SELECT</em> * <br>
+<em>FROM</em> DOCTORS<br>
+<em>WHERE</em> <span>DATEDIFF</span>(<span>YEAR</span>,Birth_Date, GETDATE()) > 45</p>
+
+	</p>
+    <table id="yıldız">
+        <tr>
+            <th>SSN</th>
+            <th>Doctor_ID</th>
+            <th>Full_Name</th>
+            <th>Birth_Date</th>
+            <th>Gender</th>
+            <th>Title</th>
+            <th>Salary</th>
+            <th>Nurse</th>
+        </tr>
+        <tr>
+            <td>123-45-6789</td>
+            <td>D001</td>
+            <td>Dr. John Smith</td>
+            <td>1970-05-15</td>
+            <td>Male</td>
+            <td>General Surgeon</td>
+            <td>150,000</td>
+            <td>N001</td>
+        </tr>
+        <tr>
+            <td>321-09-8765</td>
+            <td>D006</td>
+            <td>Dr. Michael Brown</td>
+            <td>1975-11-18</td>
+            <td>Male</td>
+            <td>Dermatologist</td>
+            <td>155,000</td>
+            <td>N006</td>
+        </tr>
+        <tr>
+            <td>543-21-9876</td>
+            <td>D003</td>
+            <td>Dr. Robert Davis</td>
+            <td>1978-12-10</td>
+            <td>Male</td>
+            <td>Pediatrician</td>
+            <td>130,000</td>
+            <td>N003</td>
+        </tr>
+    </table>
+    <br><br><br>
+	<h4 align="justify">A query that takes join of two tables and does row and column selection and ordering.</h4><br>
+    <h3 align="justify">Question 2: Retrieve the full names and genders of patients, along with the full names of their assigned doctors, for patients whose names contain the letter 'i'. Order the results based on the full names of the patients.</h3>
+	
+	<p align="justify"><em>SELECT</em> PATIENTS.Full_Name, PATIENTS.Gender, Doctors.Full_Name <em>AS</em> Doctor_Name  <br>
+<em>FROM</em> PATIENTS INNER JOIN Doctors <em>ON</em> PATIENTS.Doctor=Doctors.Doctor_ID<br>
+<em>WHERE</em> PATIENTS.Full_Name LIKE '%i%'<br>
+<em>ORDER BY</em> PATIENTS.Full_Name</p>
+    <table>
+        <tr>
+            <th>Full_Name</th>
+            <th>Gender</th>
+            <th>Doctor_Name</th>
+        </tr>
+        <tr>
+            <td>Alice Thompson</td>
+            <td>Female</td>
+            <td>Dr. John Smith</td>
+        </tr>
+        <tr>
+            <td>Andrew Wilson</td>
+            <td>Male</td>
+            <td>Dr. Michael Brown</td>
+        </tr>
+        <tr>
+            <td>Bob Williams</td>
+            <td>Male</td>
+            <td>Dr. Sarah Johnson</td>
+        </tr>
+        <tr>
+            <td>Emma Davis</td>
+            <td>Female</td>
+            <td>Dr. Maria Garcia</td>
+        </tr>
+        <tr>
+            <td>Linda Miller</td>
+            <td>Female</td>
+            <td>Dr. Robert Davis</td>
+        </tr>
+    </table>
+    <br><br><br>
+		<h4 align="justify"> Repeat the previous task but this time your query should take join of three tables </h4><br>
+    <h3 align="justify"> Question 3: Based on the results associated with the given SQL query, write a query to display the full name, gender, assigned doctor's name, and the department number where the doctor is located for a patient. Sort the results based on the full name of the patients.</h3>
+
+	
+	<p align="justify"> <em>SELECT </em> PATIENTS.Full_Name,  PATIENTS.GENDER,  DOCTORS.Full_Name <em>AS</em> Doctor_Name, Departments.Department_Number <br>
+<em>FROM </em> PATIENTS INNER JOIN DOCTORS <em>ON</em> PATIENTS.DOCTOR=DOCTORS.Doctor_ID INNER JOIN DEPARTMENTS <em>ON</em> DOCTORS.Doctor_ID=Departments.DOC_ID<br>
+<em>ORDER BY </em> PATIENTS.Full_Name<br>
+</p>
+    <table>
+        <tr>
+            <th>Full_Name</th>
+            <th>Gender</th>
+            <th>Doctor_Name</th>
+            <th>Department_Number</th>
+        </tr>
+        <tr>
+            <td>Alice Thompson</td>
+            <td>Female</td>
+            <td>Dr. John Smith</td>
+            <td>101</td>
+        </tr>
+        <tr>
+            <td>Andrew Wilson</td>
+            <td>Male</td>
+            <td>Dr. Michael Brown</td>
+            <td>106</td>
+        </tr>
+        <tr>
+            <td>Bob Williams</td>
+            <td>Male</td>
+            <td>Dr. Sarah Johnson</td>
+            <td>102</td>
+        </tr>
+        <tr>
+            <td>Emma Davis</td>
+            <td>Female</td>
+            <td>Dr. Maria Garcia</td>
+            <td>105</td>
+        </tr>
+        <tr>
+            <td>James Turner</td>
+            <td>Male</td>
+            <td>Dr. Emily Rodriguez</td>
+            <td>104</td>
+        </tr>
+        <tr>
+            <td>Linda Miller</td>
+            <td>Female</td>
+            <td>Dr. Robert Davis</td>
+            <td>103</td>
+        </tr>
+    </table>
+    <br><br><br>
+	<h4 align="justify"> Write a query involving outer join and row selection. </h4><br>
+    <h3 align="justify">Question 4: Write a query about patients who do not have an assigned doctor. Display the full name, gender, and the name of the assigned doctor.</h3>
+	
+	<p align="justify">  </p>
+    <p align="justify"><em> SELECT</em> PATIENTS.Full_Name, PATIENTS.Gender, DOCTORS.Full_Name <em>AS</em> Doctor_Name<br>
+<em> FROM</em> PATIENTS LEFT OUTER JOIN DOCTORS <em>ON</em> PATIENTS.Doctor=DOCTORS.Doctor_ID<br>
+<em> WHERE</em> DOCTORS.Doctor_ID IS NULL OR DOCTORS.SSN LIKE '%54%'<br>
+
+	</p>
+	<table>
+        <tr>
+            <th>Full_Name</th>
+            <th>Gender</th>
+            <th>Doctor_Name</th>
+        </tr>
+        <tr>
+            <td>Linda Miller</td>
+            <td>Female</td>
+            <td>Dr. Robert Davis</td>
+        </tr>
+        <tr>
+            <td>James Turner</td>
+            <td>Male</td>
+            <td>Dr. Emily Rodriguez</td>
+        </tr>
+        <tr>
+            <td>Emma Davis</td>
+            <td>Female</td>
+            <td>Dr. Maria Garcia</td>
+        </tr>
+    </table>
+    <br>
+<br><br>
+	<h4 align="justify"> Write two queries involving summary functions and row selection and join operations.</h4><br>
+    <h3 align="justify">Question 5.1: Total salary for each gender in the Nurses Table </h3>
+
+	
+    <p align="justify">
+        <em>SELECT</em> Gender, <span>SUM</span>(Salary) <em>AS</em> Total_Salary<br>
+        <em>FROM</em> NURSES<br>
+        <em>GROUP BY</em> Gender
+	</p>
+	<table>
+        <tr>
+            <th>Gender</th>
+            <th>Total_Salary</th>
+        </tr>
+        <tr>
+            <td>Female</td>
+            <td>237,000</td>
+        </tr>
+        <tr>
+            <td>Male</td>
+            <td>233,000</td>
+        </tr>
+        
+    </table>
+    <br>
+	<h3 align="justify"> Ouestion 5.2: Write an SQL query to retrieve the blood type of patients along with the average salary of doctors they are associated with. Perform an inner join between the PATIENTS and DOCTORS tables using the common field "Doctor_ID". Group the results by blood type.</h3>
+    <p align="justify"> <em> SELECT </em> Blood_Type, <span>AVG</span>(DOCTORS.Salary) <em>AS</em> Avg_Salary<br>
+        <em> FROM</em>  PATIENTS INNER JOIN DOCTORS <em>ON</em> PATIENTS.Doctor=DOCTORS.Doctor_ID<br>
+        <em> GROUP BY</em>  Blood_Type<br></p>
+    <table>
+        <tr>
+            <th>Blood_Type</th>
+            <th>Average _Salary</th>
+        </tr>
+        <tr>
+            <td>A-</td>
+            <td>155,000</td>
+        </tr>
+        <tr>
+            <td>A+</td>
+            <td>150,000</td>
+        </tr>
+        <tr>
+            <td>AB+</td>
+            <td>130,000</td>
+        </tr>
+        <tr>
+            <td>B-</td>
+            <td>120,000</td>
+        </tr>
+        <tr>
+            <td>O-</td>
+            <td>160,000</td>
+        </tr>
+        <tr>
+            <td>O+</td>
+            <td>140,000</td>
+        </tr>
+    </table>
+	<br><br>
+	<br><h4 align="justify"> Write two queries involving join, grouping, row 
+selection and ordering
+ </h4><br>
+    <h3 align="justify">Question 6.1: Write a SQL query to retrieve the full name and title of a doctor along with the full name of the nurse they work together with. Only include results where the doctor's full name is 'Dr. John Smith'. Order the results by the doctor's full name.</h3>
+	<p align="justify"><em>SELECT</em> D.Full_Name <em>AS</em> Doctor_Name, D.Title <em>AS</em> Doctor_Title, N.Full_Name <em>AS</em> Nurse_Name<br>
+<em>FROM</em> DOCTORS D LEFT JOIN WORK_TOGETHER WT <em>ON</em> D.SSN = WT.Doctor_SSN<br>
+LEFT JOIN NURSES N ON WT.Nurse_SSN = N.SSN<br>
+<em>WHERE</em> D.Full_Name = 'Dr. John Smith'<br>
+<em>ORDER BY</em> D.Full_Name </p>
+	<p align="justify">  </p>
+    <table>
+    <tr>
+      <th>Doctor Name</th>
+      <th>Doctor Title</th>
+      <th>Nurse Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dr. John Smith</td>
+      <td>General Surgeon</td>
+      <td>Nurse Emily Brown</td>
+    </tr>
+    </table>
+    <br>
+	 <h3 align="justify">Question 6.2: Write an SQL query to retrieve the full name of doctors along with the count of patients they have. Order the results by the patient count in descending order.</h3>
+<p align="justify"><em>SELECT</em> 
+    D.Full_Name <em>AS</em> Doctor_Name,
+    <span>COUNT</span>(P.SSN) <em>AS</em> Patient_Count<br>
+<em>FROM</em> DOCTORS D
+LEFT JOIN PATIENTS P <em>ON</em> D.Doctor_ID = P.Doctor<br>
+<em>GROUP BY</em> D.Full_Name<br>
+<em>ORDER BY</em> Patient_Count <em>DESC</em>
+<table>
+
+    <tr>
+      <th>Doctor Name</th>
+      <th>Patient Count</th>
+    </tr>
+ 
+    <tr>
+      <td>Dr. Emily Rodriguez</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Dr. John Smith</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Dr. Maria Garcia</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Dr. Michael Brown</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Dr. Robert Davis</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Dr. Sarah Johnson</td>
+      <td>1</td>
+    </tr>
+	</table>
+ </p>
+<br><br>
+<h4 align="justify"> Write two queries involving join, grouping and group 
+selection
+ </h4><br>
+    <h3 align="justify">Question 7.1: Retrieve the average salary for doctors grouped by their titles, and filter the results to only include titles with an average salary greater than $130,000.</h3>
+    <p align="justify">
+       <em>SELECT</em>
+    D.Title <em>AS</em> Doctor_Title,
+    <span>AVG</span>(D.Salary) <em>AS</em> Avg_Doctor_Salary<br>
+<em>FROM</em> DOCTORS D<br>
+<em>GROUP BY</em> D.Title<br>
+<em>HAVING</em> <span>AVG</span>(D.Salary) > 130000
+	</p>
+    <table>
+    <tr>
+      <th>Doctor Title</th>
+      <th>Average Doctor Salary</th>
+    </tr>
+    <tr>
+      <td>Dermatologist</td>
+      <td>155000</td>
+    </tr>
+    <tr>
+      <td>General Surgeon</td>
+      <td>150000</td>
+    </tr>
+    <tr>
+      <td>Neurologist</td>
+      <td>160000</td>
+    </tr>
+    <tr>
+      <td>Oncologist</td>
+      <td>140000</td>
+    </tr>
+</table>
+<br>
+    <h3 align="justify">Question 7.2: Nurses, their genders, and average salary for each gender, ordered by average salary</h3>
+    
+<p align="justify"><em>SELECT</em> Nurses.Gender, <span>AVG</span>(Nurses.Salary) <em>AS</em> Average_Salary <br>
+<em>FROM</em> Nurses <br>
+<em>GROUP BY</em> Nurses.Gender<br>
+<em>HAVING</em> </span>AVG</span>(Nurses.Salary) > 75000<br>
+</p>
+<table>
+    <tr>
+        <th>Gender</th>
+        <th>Average_Salary</th>
+    </tr>
+    <tr>
+        <td>Female</td>
+        <td>79000</td>
+    </tr>
+    <tr>
+        <td>Male</td>
+        <td>77666</td>
+    </tr>
+</table>
+<br><br><br><h4 align="justify">Write a query involving join, grouping, group selection 
+and row selection
+</h4><br>
+    <h3 align="justify">Question 8: List department with more than 2 doctors and show neurologist doctors in each departman</h3>
+	<p align="justify"> </p>
+	<p align="justify"><em>SELECT</em> DEPARTMENTS.Department_Number, <span>COUNT</span>(DOCTORS.Doctor_ID) <em>AS</em> Doctor_Count, DOCTORS.Full_Name <em>AS</em> Neurologist_Name<br>
+<em>FROM </em>DEPARTMENTS<br>
+<em>JOIN</em> DOCTORS <em>ON</em> DEPARTMENTS.DOC_ID=DOCTORS.Doctor_ID <em>WHERE</em> DOCTORS.Title='Neurologist'<br>
+<em>GROUP BY</em> DEPARTMENTS.Department_Number, DOCTORS.Full_Name<br>
+<em>HAVING</em> <span>COUNT</span>(DOCTORS.Doctor_ID) > 2 </p>
+    <table>
+        <tr>
+            <th>Department Number</th>
+            <th>Doctor Count</th>
+            <th>Neurologist Name</th>
+        </tr>
+        
+		<tr>
+		     <th> </th>
+			 <th> </th>
+			 <th> </th>
+	    </tr>
+		
+
+    </table>
+
+
+            
+    </section>
+    <br><br><br><br>
+    <h2 align = center style="color:#e71fd3" ><a href = "#top" > GO BACK TO TOP </a></h2>
+    <footer>
+        <div class="container clearfix">
+            <div class="col">
+                <h4 class="text-uppercase">
+                    
+                </h4>
+                <p> 
+                </p>
+            </div>
+            <div class="col">
+                <h4 class="text-uppercase">
+                    Prepared By
+                </h4>
+                <ul style="font-size:15pt;">
+                    <li>Tuba Selen Akıcı</li>
+                    <br>
+                    <li>Melek Melisa Akay</li>
+                    <br>
+                    <li>Ayşenur Kumral</li>
+                    <br>
+                    <li>Misem Tekiner</li>
+                    <br>
+                    <li>Özgür Deniz Boran</li>
+                    <br>
+                </ul>
+            </div>
+            <div class="col">
+                <h4 class="text-uppercase">
+                    
+                </h4>
+                <p></p>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">
+        <div class="container">
+            <small>Copyright© Website 2024</small>
+        </div>
+    </div>
+
+</body>
+
+</html>

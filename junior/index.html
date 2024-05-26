@@ -1,0 +1,2440 @@
+<html>
+
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+	<header class="header">
+		<h1 class="header-title"> Art Museum Database</h1>
+		<nav class="navbar" id="m_nav-links">
+			<ul class="navbar-list">
+				<li class="navbar-item">
+					<a href="#definitions">
+						Definitions
+					</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#diagram">
+						ER-Diagram
+					</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#implementation">
+						Implementation
+					</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#tables" rel="">
+						Tables
+					</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#relation-tables" rel="">
+						Relation Tables
+					</a>
+				</li>
+				<li class="navbar-item">
+					<a href="#queries" rel="">
+						Queries
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<section id="m_about">
+		<div>
+			<ul align="justify">
+
+
+				<h3 id="definitions"> Definition: </h3>
+				<p> The aim is defining an art museum database system design. The museum seeks to establish an efficient and
+					comprehensive database to manage its extensive collection of art pieces spanning various genres, periods,
+					and artists. The primary objective of this database design is to facilitate the organization, cataloging,
+					and accessibility of artworks for museum staff, researchers, and visitors.
+					The database will need to accommodate detailed information about each artwork, including its title, artist,
+					creation date, and the technique that is used, any associated historical or contextual information.
+					Additionally, the database should support the classification of artworks into relevant categories or genres
+					to aid in navigation and searchability. As well as the detailed visitor entrances and staff information to
+					provide a seamless tracking system. Furthermore, the system should include modules for managing temporary
+					and permanent exhibitions, tracking loaned artworks, and recording interactions with visitors. Overall, the
+					art museum database design will serve as a robust foundation for efficiently managing the museum's diverse
+					collection and enhancing the overall visitor experience.
+				</p>
+
+				<h3> System Explanation and Description: </h3>
+				<ul>
+					CASE STUDY: ART MUSEUM DATABASE
+					<li>
+						The art museum is divided into specific sections based on the<u><b> locations.</u></b> Every employee
+						works in the assigned section of the museum.
+					</li>
+					<li>The staff is fully responsible for the art museum. The staff records include <u><b>ID, Name, Surname,
+								Contact info, Position, Salary.</u></b>
+					</li>
+					<li>The visitors hold an important place for the museum.<u><b> ID, Name, Surname, Contact info, Date of
+								Visit and Birth Date</u></b> is stored. Every visitor pays <span style="font-weight:bold;color:red">
+							full </span>or <span style="font-weight:bold;color:red"> discounted price</span> depending on museum
+						sections which are visited and their visiting time.
+					</li>
+					<li>The museum hosts artists of different nationalities. Each artist is identified by their<u><b> ID, Name,
+								Surname, Birth Date, Death Date.</u></b>
+					</li>
+					<li>The hospital maintains a Pharmacy, which provides medicines to patients. The Pharmacy is identified by
+						its Phone Number and stores information about Medicine Prices
+						and the Number of Medicines available.
+					</li>
+					<li>Every artist has a various artwork that belongs to specific exhibition. Each exhibition is uniquely
+						identified by their <u><b>theme and has associated attributes, including Name, Start Date and End
+								Date.</u></b>
+					</li>
+					<li>Every visitor has a chance to learn about artworks’ unique <u><b>title, technique which is used, origin
+								the year that is created, status (whether it is borrowed or bought).</u></b>
+					</li>
+					<li>The museum has the specific visiting time for the specific exhibitions. Visiting time changes depending
+						on<u><b> days and time slots.</u></b> Therefore, it holds unique<u><b> ID.</u></b>
+					</li>
+				</ul>
+
+
+				<h3 id="m__Er-diagramı"><a href="ER Diagram.pdf"> ER Diagram:</a></h3>
+				<img src=diagram.webp width=600px height=500px border=8px solid align=center>
+
+
+
+
+				<h3 id="m__implementation"> IMPLEMENTATION </h3>
+				<hr class="m_dark-star-line">
+				<div style="text-align:justify">
+
+					<h4> Exhibitions: </h4>
+					<p> CREATE TABLE Exhibitions <br>
+						( Theme VARCHAR(50) NOT NULL,<br>
+						Name VARCHAR(50) NOT NULL,<br>
+						Start_Date DATE NOT NULL,<br>
+						End_Date DATE,<br>
+						PRIMARY KEY (Theme)<br>
+						);<br>
+						<br>
+						INSERT INTO Exhibitions VALUES('Nature','Serenity','09.09.2021',NULL);<br>
+						INSERT INTO Exhibitions VALUES('Human Figures','Reflections','05.11.2023','30.12.2026');<br>
+						INSERT INTO Exhibitions VALUES('Historical and Mythological','Echoes','26.12.2023',NULL);<br>
+						INSERT INTO Exhibitions VALUES('Modern Art','Rebellion','11.03.2020','01.07.2026');<br>
+						go
+					</p>
+					<br>
+
+					<h4> Presentation_Time: </h4>
+					<p>CREATE TABLE Presentation_Time (<br>
+						Theme VARCHAR(50),<br>
+						Visiting_Time_ID VARCHAR(10)<br>
+						);<br>
+						<br>
+						INSERT INTO Presentation_Time VALUES('Nature', 'W0912');<br>
+						INSERT INTO Presentation_Time VALUES('Human Figures', 'W1820');<br>
+						INSERT INTO Presentation_Time VALUES('Historical and Mythological', 'WE0914');<br>
+						INSERT INTO Presentation_Time VALUES('Modern Art', 'WE0914');<br>
+						INSERT INTO Presentation_Time VALUES('Nature', 'WE0912');<br>
+						INSERT INTO Presentation_Time VALUES('Human Figures', 'W1518');<br>
+						INSERT INTO Presentation_Time VALUES('Historical and Mythological', 'W1215');<br>
+						INSERT INTO Presentation_Time VALUES('Modern Art', 'W1820');<br>
+						INSERT INTO Presentatio_Time VALUES('Nature', 'WE0913');<br>
+						INSERT INTO Presentation_Time VALUES('Human Figures', 'W1518');<br>
+						INSERT INTO Presentation_Time VALUES('Historical and Mythological', 'WE0914');<br>
+						INSERT INTO Presentation_Time VALUES('Modern Art', 'WE0912');<br>
+						INSERT INTO Presentation_Time VALUES('Nature', 'WE0913');<br>
+						INSERT INTO Presentation_Time VALUES('Human Figures', 'W1820');<br>
+						INSERT INTO Presentation_Time VALUES('Historical and Mythological', 'WE0914');<br>
+						INSERT INTO Presentation_Time VALUES('Modern Art', 'W1215');<br>
+						go
+					</p>
+					<br><br>
+
+					<h4> Artworks: </h4>
+					<p>CREATE TABLE Artworks (<br>
+						Title VARCHAR(100),<br>
+						Technique VARCHAR(50),<br>
+						Status VARCHAR(20),<br>
+						Origin VARCHAR(50),<br>
+						Year_Created INT,<br>
+						Artist_ID VARCHAR(10),<br>
+						Theme VARCHAR(50),<br>
+						PRIMARY KEY (Title, Technique)<br>
+						);<br>
+						<br>
+						INSERT INTO Artworks VALUES('Starry Night Over the Rhône', 'Oil on canvas', 'Borrowed', 'Netherlands',
+						1889, 'VVG', 'Nature');<br>
+						INSERT INTO Artworks VALUES('Water Lilies', 'Oil on canvas', 'Borrowed', 'France', 1888, 'CM',
+						'Nature');<br>
+						INSERT INTO Artworks VALUES('The Hay Wain', 'Oil on canvas', 'Bought', 'France', 1916, 'JC',
+						'Nature');<br>
+						INSERT INTO Artworks VALUES('View of Toledo', 'Oil on canvas', 'Bought', 'England', 1821, 'EG',
+						'Nature');<br>
+						INSERT INTO Artworks VALUES('Mona Lisa', 'Oil on canvas', 'Borrowed', 'Spain', 1600, 'LDV', 'Human
+						Figures');<br>
+						INSERT INTO Artworks VALUES('Girl with a Pearl Earring', 'Oil on poplar panel', 'Borrowed', 'Italy', 1503,
+						'JV', 'Human Figures');<br>
+						INSERT INTO Artworks VALUES('Self-Portrait with Thorn Necklace and Hummingbird', 'Oil on canvas',
+						'Bought', 'Netherlands', 1665, 'FK', 'Human Figures');<br>
+						INSERT INTO Artworks VALUES('American Gothic', 'Oil on canvas', 'Bought', 'Mexico', 1940, 'GW', 'Human
+						Figures');<br>
+						INSERT INTO Artworks VALUES('The Son of Man', 'Oil on beaverboard', 'Bought', 'USA', 1930, 'RM', 'Human
+						Figures');<br>
+						INSERT INTO Artworks VALUES('The Birth of Venus', 'Oil on canvas', 'Borrowed', 'Belgium', 1964, 'SB',
+						'Historical and Mythological');<br>
+						INSERT INTO Artworks VALUES('The Last Supper', 'Tempera on canvas', 'Borrowed', 'Italy', 1486, 'LDV',
+						'Historical and Mythological');<br>
+						INSERT INTO Artworks VALUES('Guernica', 'Tempera and oil on plaster', 'Bought', 'Italy', 1498, 'PP',
+						'Historical and Mythological');<br>
+						INSERT INTO Artworks VALUES('The Creation of Adam', 'Oil on canvas', 'Borrowed', 'Spain', 1937, 'MB',
+						'Historical and Mythological');<br>
+						INSERT INTO Artworks VALUES('The Garden of Earthly Delights', 'Fresco', 'Borrowed', 'Italy', 1512, 'HB',
+						'Historical and Mythological');<br>
+						INSERT INTO Artworks VALUES('Composition VII', 'Oil on oak panel', 'Bought', 'Netherlands', 1503, 'WK',
+						'Modern Art');<br>
+						INSERT INTO Artworks VALUES('The Persistence of Memory', 'Oil on canvas', 'Bought', 'Germany', 1913, 'SD',
+						'Modern Art');<br>
+						INSERT INTO Artworks VALUES('Black Square', 'Oil on canvas', 'Bought', 'Spain', 1931, 'KM', 'Modern
+						Art');<br>
+						INSERT INTO Artworks VALUES('Broadway Boogie Woogie', 'Oil on linen', 'Bought', 'Russia', 1915, 'PM',
+						'Modern Art');<br>
+						INSERT INTO Artworks VALUES('Les Demoiselles d''Avignon', 'Oil on canvas', 'Borrowed', 'USA', 1943, 'PP',
+						'Human Figures');<br>
+						INSERT INTO Artworks VALUES('The Scream', 'Tempera on cardboard', 'Borrowed', 'Norway', 1893, 'EM', 'Human
+						Figures');<br>
+						INSERT INTO Artworks VALUES('The Scream', 'Screenprint', 'Bought', 'Norway', 1893, 'AW', 'Human
+						Figures');<br>
+						INSERT INTO Artworks VALUES('The Last Supper', 'Oil on canvas', 'Bought', 'USA', 1984, 'SD', 'Historical
+						and Mythological');<br>
+						INSERT INTO Artworks VALUES('The Garden of Earthly Delights', 'Oil on wood panel', 'Bought', 'Italy',
+						1498, 'SH', 'Historical and Mythological');<br>
+						INSERT INTO Artworks VALUES('The Tortoise Trainer', 'Acrylic on canvas', 'Borrowed', 'Turkey', 1906, 'OH',
+						'Historical and Mythological');<br>
+						INSERT INTO Artworks VALUES('Garden in the Evening', 'Oil on canvas', 'Bought', 'Turkey', 1925, 'MC',
+						'Human Figures');<br>
+						INSERT INTO Artworks VALUES('I Know Not. I Know', 'Lithograph', 'Borrowed', 'Japan', 1962, 'TM', 'Modern
+						Art');<br>
+						go
+					</p><br>
+					<h4> Artists: </h4>
+					<p>CREATE TABLE Artists (<br>
+						Artist_ID VARCHAR(3) PRIMARY KEY,<br>
+						Name VARCHAR(50),<br>
+						Surname VARCHAR(50),<br>
+						Nationality VARCHAR(50),<br>
+						Birth_Date INT,<br>
+						Death_Date INT<br>
+						);<br>
+						<br>
+						INSERT INTO Artists VALUES('VVG', 'Vincent', 'van Gogh', 'Dutch', 1853, 1890);<br>
+						INSERT INTO Artists VALUES('KM', 'Kazimir', 'Malevich', 'Russian', 1879, 1879);<br>
+						INSERT INTO Artists VALUES('CM', 'Claude', 'Monet', 'French', 1840, 1926);<br>
+						INSERT INTO Artists VALUES('JC', 'John', 'Constable', 'British', 1776, 1837);<br>
+						INSERT INTO Artists VALUES('EG', 'El', 'Greco', 'Greek-Spanish', 1541, 1614);<br>
+						INSERT INTO Artists VALUES('LDV', 'Leonardo', 'da Vinci', 'Italian', 1452, 1519);<br>
+						INSERT INTO Artists VALUES('JV', 'Johannes', 'Vermeer', 'Dutch', 1632, 1675);<br>
+						INSERT INTO Artists VALUES('FK', 'Frida', 'Kahlo', 'Mexican', 1907, 1954);<br>
+						INSERT INTO Artists VALUES('GW', 'Grant', 'Wood', 'American', 1891, 1942);<br>
+						INSERT INTO Artists VALUES('RM', 'René', 'Magritte', 'Belgian', 1898, 1967);<br>
+						INSERT INTO Artists VALUES('SB', 'Sandro', 'Botticelli', 'Italian', 1445, 1510);<br>
+						INSERT INTO Artists VALUES('AW', 'Andy', 'Warhol', 'American', 1928, 1987);<br>
+						INSERT INTO Artists VALUES('PP', 'Pablo', 'Picasso', 'Spanish', 1881, 1973);<br>
+						INSERT INTO Artists VALUES('MB', 'Michelangelo', 'Buonarroti', 'Italian', 1475, 1564);<br>
+						INSERT INTO Artists VALUES('HB', 'Hieronymus', 'Bosch', 'Dutch', 1450, 1516);<br>
+						INSERT INTO Artists VALUES('WK', 'Wassily', 'Kandinsky', 'Russian', 1866, 1944);<br>
+						INSERT INTO Artists VALUES('SD', 'Salvador', 'Dali', 'Spanish', 1904, 1989);<br>
+						INSERT INTO Artists VALUES('PM', 'Piet', 'Mondrian', 'Dutch', 1872, 1944);<br>
+						INSERT INTO Artists VALUES('SH', 'Steve', 'Huston', 'American', 1961, NULL);<br>
+						INSERT INTO Artists VALUES('OH', 'Osman', 'Hamdi', 'Turkish', 1842, 1910);<br>
+						INSERT INTO Artists VALUES('MC', 'Melek', 'Celal', 'Turkish', 1901, 1978);<br>
+						INSERT INTO Artists VALUES('TM', 'Takashi', 'Murakami', 'Japanese', 1962, NULL);<br>
+						go
+					</p><br>
+
+					<h4> Staff: </h4>
+					<p>CREATE TABLE Staff (<br>
+						S_ID VARCHAR(10) PRIMARY KEY,<br>
+						Name VARCHAR(50),<br>
+						Surname VARCHAR(50),<br>
+						Salary DECIMAL(10, 2),<br>
+						Position VARCHAR(50),<br>
+						Contact_Info VARCHAR(20)<br>
+						);<br>
+						INSERT INTO Staff VALUES ('TB90C', 'Tom', 'Baker', 90000.00, 'Curator', '(201) 555-0123');<br>
+						INSERT INTO Staff VALUES ('CO60C', 'Clara', 'Oswald', 60000.00, 'Conservator', '(202) 555-0456');<br>
+						INSERT INTO Staff VALUES ('SF55R', 'Susan', 'Foreman', 55000.00, 'Registrar', '(203) 555-0789');<br>
+						INSERT INTO Staff VALUES ('SJS75D', 'Sarah Jane', 'Smith', 75000.00, 'Designer', '(204) 555-0012');<br>
+						INSERT INTO Staff VALUES ('JG55C', 'Jo', 'Grant', 55000.00, 'Coordinator', '(205) 555-0345');<br>
+						INSERT INTO Staff VALUES ('AP50E', 'Amelia', 'Pond', 50000.00, 'Educator', '(206) 555-0678');<br>
+						INSERT INTO Staff VALUES ('RW40T', 'Rory', 'Williams', 40000.00, 'Technician', '(207) 555-0901');<br>
+						INSERT INTO Staff VALUES ('RT35S', 'Rose', 'Tyler', 35000.00, 'Security', '(208) 555-0234');<br>
+						INSERT INTO Staff VALUES ('IC35S', 'Ian', 'Chesterton', 35000.00, 'Security', '(209) 555-0567');<br>
+						INSERT INTO Staff VALUES ('BW25C', 'Barbara', 'Wright', 25000.00, 'Cleaning', '(210) 555-0890');<br>
+						INSERT INTO Staff VALUES ('PC70C', 'Peter', 'Capaldi', 70000.00, 'Conservator', '(211) 555-0123');<br>
+						INSERT INTO Staff VALUES ('MJ40G', 'Martha', 'Johns', 40000.00, 'Guide', '(212) 555-0456');<br>
+						INSERT INTO Staff VALUES ('MS40G', 'Matt', 'Smith', 40000.00, 'Guide', '(213) 555-0789');<br>
+						INSERT INTO Staff VALUES ('DN40G', 'Donna', 'Noble', 40000.00, 'Guide', '(214) 555-0012');<br>
+						INSERT INTO Staff VALUES ('DT45T', 'David', 'Tennant', 45000.00, 'Technician', '(215) 555-0345');<br>
+						INSERT INTO Staff VALUES ('CE30C', 'Chris', 'Eccleston', 30000.00, 'Cleaning', '(216) 555-0678');<br>
+						INSERT INTO Staff VALUES ('RS65R', 'River', 'Song', 65000.00, 'Registrar', '(217) 555-0901');<br>
+						INSERT INTO Staff VALUES ('JS80C', 'John', 'Smith', 80000.00, 'Curator', '(218) 555-0234');<br>
+						INSERT INTO Staff VALUES ('MP25C', 'Melody', 'Pond', 25000.00, 'Cleaning', '(219) 555-0567');<br>
+						INSERT INTO Staff VALUES ('BP25C', 'Bill', 'Potts', 45000.00, 'Cook', '(220) 555-0890');<br>
+						INSERT INTO Staff VALUES ('KS45S', 'Kate', 'Stewart', 45000.00, 'Security', '(221) 555-0123');<br>
+						INSERT INTO Staff VALUES ('WM60M', 'Wilfred', 'Mott', 60000.00, 'Manager', '(222) 555-0456');<br>
+						INSERT INTO Staff VALUES ('JH35S', 'Jack', 'Harkness', 35000.00, 'Server', '(234) 423-1352');<br>
+						go</p><br>
+
+					<h4> Museum Sections: </h4>
+					<p>CREATE TABLE Museum_Sections (<br>
+						Section_ID INT PRIMARY KEY,<br>
+						Location VARCHAR(50)<br>
+						);<br>
+						INSERT INTO Museum_Sections VALUES (101, 'Serenity');<br>
+						INSERT INTO Museum_Sections VALUES (102, 'Reflections');<br>
+						INSERT INTO Museum_Sections VALUES (103, 'Echoes');<br>
+						INSERT INTO Museum_Sections VALUES (104, 'Rebellion');<br>
+						INSERT INTO Museum_Sections VALUES (105, 'Restrooms');<br>
+						INSERT INTO Museum_Sections VALUES (106, 'Lockers');<br>
+						INSERT INTO Museum_Sections VALUES (107, 'Restaurant');<br>
+						INSERT INTO Museum_Sections VALUES (108, 'Souvenir_Shop');<br>
+						go </p><br>
+
+					<h4> Tickets Free: </h4>
+					<p>CREATE TABLE Ticket_Fee (<br>
+						Visiting_Time_ID VARCHAR(10),<br>
+						Visiting_Age_Group VARCHAR(50),<br>
+						Ticket_Type VARCHAR(50),<br>
+						PRIMARY KEY (Visiting_Time_ID, Visiting_Age_Group)<br>
+						);<br>
+						INSERT INTO Ticket_Fee VALUES ('W0912', '0-12 and 65 over', 'Discounted Price');<br>
+						INSERT INTO Ticket_Fee VALUES ('W1215', '0-12 and 65 over', 'Discounted Price');<br>
+						INSERT INTO Ticket_Fee VALUES ('W1518', '0-12 and 65 over', 'Discounted Price');<br>
+						INSERT INTO Ticket_Fee VALUES ('W1820', '0-12 and 65 over', 'Discounted Price');<br>
+						INSERT INTO Ticket_Fee VALUES ('WE0912', '12-65', 'Fully Price');<br>
+						INSERT INTO Ticket_Fee VALUES ('WE0913', '12-65', 'Fully Price');<br>
+						INSERT INTO Ticket_Fee VALUES ('WE0914', '12-65', 'Fully Price');<br>
+						INSERT INTO Ticket_Fee VALUES ('M900', 'Not available','Not available' );<br>
+						go</p><br>
+
+					<h4> Visiting Time: </h4>
+					<p>CREATE TABLE Visiting_Time ( <br>
+						Time_slots VARCHAR(20),<br>
+						Days VARCHAR(20),<br>
+						ID VARCHAR(10) PRIMARY KEY<br>
+						);<br>
+						INSERT INTO Visiting_Time VALUES ('09.00-12.00', 'Weekdays', 'W0912');<br>
+						INSERT INTO Visiting_Time VALUES ('12.00-15.00', 'Weekdays', 'W1215');<br>
+						INSERT INTO Visiting_Time VALUES ('15.00-18.00', 'Weekdays', 'W1518');<br>
+						INSERT INTO Visiting_Time VALUES ('18.00-20.00', 'Weekdays', 'W1820');<br>
+						INSERT INTO Visiting_Time VALUES ('09.00-12.00', 'Weekends', 'WE0912');<br>
+						INSERT INTO Visiting_Time VALUES ('12.00-15.00', 'Weekends', 'WE0913');<br>
+						INSERT INTO Visiting_Time VALUES ('15.00-18.00', 'Weekends', 'WE0914');<br>
+						INSERT INTO Visiting_Time VALUES (NULL, 'Monday', 'M900');<br>
+						go</p><br>
+
+
+					<h4> Visitors: </h4>
+					<p>CREATE TABLE Visitors (<br>
+						V_ID INT PRIMARY KEY,<br>
+						Name VARCHAR(50),<br>
+						Surname VARCHAR(50),<br>
+						Contact_Info VARCHAR(20),<br>
+						Date_of_Visit DATE,<br>
+						Birth_Date DATE<br>
+						);<br>
+						INSERT INTO Visitors VALUES(200001, 'Jay', 'Pritchett', '(682) 902-9967', '2024-01-03', '1960-06-12');<br>
+						INSERT INTO Visitors VALUES (200002, 'Claire', 'Dunphy', '(383) 372-7950', '2024-01-08',
+						'1975-08-19');<br>
+						INSERT INTO Visitors VALUES(200003, 'Gloria', 'Delgado-Pritchett', '(218) 462-8506', '2024-01-03',
+						'1978-06-06');<br>
+						INSERT INTO Visitors VALUES(200030, 'Phil', 'Dunphy', '(223) 996-5529', '2024-01-15', '1972-08-18');<br>
+						INSERT INTO Visitors VALUES(200004, 'Manny', 'Delgado', NULL, '2024-01-18', '2007-09-13');<br>
+						INSERT INTO Visitors VALUES(200005, 'Dylan', 'Marshall', '(313) 760-7941', '2024-02-06',
+						'1997-08-21');<br>
+						INSERT INTO Visitors VALUES(200006, 'Mitchell', 'Pritchett', '(958) 868-8487', '2024-03-18',
+						'1981-08-08');<br>
+						INSERT INTO Visitors VALUES(200007, 'Alex', 'Dunphy', NULL, '2024-03-29', '2001-12-04');<br>
+						INSERT INTO Visitors VALUES(200008, 'Haley', 'Dunphy', '(958) 347-1147', '2024-04-06', '1998-07-24');<br>
+						INSERT INTO Visitors VALUES(200009, 'Luke', 'Dunphy', NULL, '2024-01-15', '2007-04-18');<br>
+						INSERT INTO Visitors VALUES(200031, 'Cameron', 'Tucker', '(272) 865-2942', '2024-03-18',
+						'1980-05-03');<br>
+						INSERT INTO Visitors VALUES(200011, 'Lily', 'Tucker-Pritchett', NULL, '2024-03-18', '2019-02-08');<br>
+						INSERT INTO Visitors VALUES(200010, 'Rory', 'Gilmore', '(514) 743-4983', '2024-05-16', '2002-04-28');<br>
+						INSERT INTO Visitors VALUES(200012, 'Jess', 'Mariona', '(233) 877-7121', '2024-05-17', '2001-03-21');<br>
+						INSERT INTO Visitors VALUES(200013, 'Dean', 'Forrester', '(893) 205-2272', '2024-05-19',
+						'2000-04-20');<br>
+						INSERT INTO Visitors VALUES(200014, 'Lorelai', 'Gilmore', '(291) 489-1622', '2024-05-29',
+						'1976-03-19');<br>
+						INSERT INTO Visitors VALUES(200015, 'Luke', 'Danes', '(539) 893-7497', '2024-06-30', '1970-07-20');<br>
+						INSERT INTO Visitors VALUES(200016, 'Paris', 'Geller', '(924) 361-9946', '2024-08-12', '2002-01-30');<br>
+						INSERT INTO Visitors VALUES(200017, 'April', 'Nardini', NULL, '2024-06-30', '2008-12-12');<br>
+						INSERT INTO Visitors VALUES(200018, 'Lane', 'Kim', '(590) 607-8944', '2024-08-23', '2001-05-15');<br>
+						INSERT INTO Visitors VALUES(200019, 'Logan', 'Huntzberger', '(255) 251-6983', '2024-09-05',
+						'2000-11-06');<br>
+						INSERT INTO Visitors VALUES(200020, 'Christopher', 'Hayden', '(220) 570-4067', '2024-09-17',
+						'1976-10-17');<br>
+						INSERT INTO Visitors VALUES(200021, 'Emily', 'Gilmore', '(472) 518-6169', '2024-09-24', '1956-02-02');<br>
+						INSERT INTO Visitors VALUES(200022, 'Richard', 'Gilmore', '(228) 985-8116', '2024-10-09',
+						'1953-01-01');<br>
+						INSERT INTO Visitors VALUES(200023, 'Michel', 'Gerard', '(979) 677-8703', '2024-10-10', '1979-09-22');<br>
+						INSERT INTO Visitors VALUES(200024, 'Zack Van', 'Gerbig', '(918) 672-1662', '2024-10-20',
+						'1999-02-21');<br>
+						INSERT INTO Visitors VALUES(200025, 'Sookie', 'James', '(585) 261-5393', '2024-11-01', '1979-05-06');<br>
+						INSERT INTO Visitors VALUES(200026, 'Kirk', 'Gleason', '(863) 371-9625', '2024-11-04', '1983-03-14');<br>
+						INSERT INTO Visitors VALUES(200027, 'Babette', 'Dell', '(609) 687-5025', '2024-11-06', '1965-03-09');<br>
+						INSERT INTO Visitors VALUES(200028, 'Doyle', 'McMaster', '(733) 366-4865', '2024-12-02',
+						'2001-05-11');<br>
+						INSERT INTO Visitors VALUES(200029, 'Taylor', 'Doose', '(999) 308-7627', '2024-07-21', '1964-07-23');<br>
+						go</p><br>
+
+					<h4> In_Relation: </h4>
+					<p>CREATE TABLE In_Relation (<br>
+						Theme VARCHAR(50),<br>
+						Section_ID INT<br>
+						);<br>
+						INSERT INTO In_Relation VALUES ('Nature', 101);<br>
+						INSERT INTO In_Relation VALUES ('Human Figures', 102);<br>
+						INSERT INTO In_Relation VALUES ('Historical and Mythological', 103);<br>
+						INSERT INTO In_Relation VALUES ('Modern Art', 104);<br>
+						go</p><br>
+				</div>
+		</div>
+	</section>
+	<h2 align="center" style="color:#2d3d4f"><a href="#m__top" rel=""> GO BACK TO TOP </a></h2>
+	</div>
+	<div style="text-align:justify">
+		<section id="m_portfolio">
+			<div class="m_container">
+				<h3 id="m__tables">
+					TABLES
+				</h3><br>
+				<hr class="m_dark-star-line">
+				<h4> Exhibitions: </h4>
+				<table border="2">
+					<tr>
+						<th><u>Theme</u></th>
+						<th>Name</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+					</tr>
+					<tr>
+						<td>Nature</td>
+						<td>Serenity</td>
+						<td>'09.09.2021</td>
+						<td>NULL</td>
+					</tr>
+					<tr>
+						<td>Human Figures</td>
+						<td>Reflections</td>
+						<td>05.11.2023</td>
+						<td>30.12.2026</td>
+					</tr>
+					<tr>
+						<td>Historical and Mythological</td>
+						<td>Echoes</td>
+						<td>26.12.2023</td>
+						<td>NULL</td>
+					</tr>
+					<tr>
+						<td>Modern Art</td>
+						<td>Rebellion</td>
+						<td>11.03.2020</td>
+						<td>01.07.2026</td>
+					</tr>
+
+				</table>
+				<br>
+				<h4> Artworks: </h4>
+				<table border="2">
+
+					<tr>
+						<th><u>Title</u></th>
+						<th><u>Technique</u></th>
+						<th>Status</th>
+						<th>Location</th>
+						<th>Year</th>
+						<th>Artist_ID</th>
+						<th>Theme</th>
+					</tr>
+
+					<tr>
+						<td>Starry Night Over the Rhône</td>
+						<td>Oil on canvas</td>
+						<td>Borrowed</td>
+						<td>Netherlands</td>
+						<td>1889</td>
+						<td>VVG</td>
+						<td>Nature</td>
+					</tr>
+					<tr>
+						<td>Water Lilies</td>
+						<td>Oil on canvas</td>
+						<td>Borrowed</td>
+						<td>France</td>
+						<td>1888</td>
+						<td>CM</td>
+						<td>Nature</td>
+					</tr>
+					<tr>
+						<td>The Hay Wain</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>France</td>
+						<td>1916</td>
+						<td>JC</td>
+						<td>Nature</td>
+					</tr>
+					<tr>
+						<td>View of Toledo</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>England</td>
+						<td>1821</td>
+						<td>EG</td>
+						<td>Nature</td>
+					</tr>
+					<tr>
+						<td>Mona Lisa</td>
+						<td>Oil on canvas</td>
+						<td>Borrowed</td>
+						<td>Spain</td>
+						<td>1600</td>
+						<td>LDV</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>Girl with a Pearl Earring</td>
+						<td>Oil on poplar panel</td>
+						<td>Borrowed</td>
+						<td>Italy</td>
+						<td>1503</td>
+						<td>JV</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>Self-Portrait with Thorn Necklace and Hummingbird</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>Netherlands</td>
+						<td>1665</td>
+						<td>FK</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>American Gothic</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>Mexico</td>
+						<td>1940</td>
+						<td>GW</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>The Son of Man</td>
+						<td>Oil on beaverboard</td>
+						<td>Bought</td>
+						<td>USA</td>
+						<td>1930</td>
+						<td>RM</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>The Birth of Venus</td>
+						<td>Oil on canvas</td>
+						<td>Borrowed</td>
+						<td>Belgium</td>
+						<td>1964</td>
+						<td>SB</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>The Last Supper</td>
+						<td>Tempera on canvas</td>
+						<td>Borrowed</td>
+						<td>Italy</td>
+						<td>1486</td>
+						<td>LDV</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>Guernica</td>
+						<td>Tempera and oil on plaster</td>
+						<td>Bought</td>
+						<td>Italy</td>
+						<td>1498</td>
+						<td>PP</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>The Creation of Adam</td>
+						<td>Oil on canvas</td>
+						<td>Borrowed</td>
+						<td>Spain</td>
+						<td>1937</td>
+						<td>MB</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>The Garden of Earthly Delights</td>
+						<td>Fresco</td>
+						<td>Borrowed</td>
+						<td>Italy</td>
+						<td>1512</td>
+						<td>HB</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>Composition VII</td>
+						<td>Oil on oak panel</td>
+						<td>Bought</td>
+						<td>Netherlands</td>
+						<td>1503</td>
+						<td>WK</td>
+						<td>Modern Art</td>
+					</tr>
+					<tr>
+						<td>The Persistence of Memory</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>Germany</td>
+						<td>1913</td>
+						<td>SD</td>
+						<td>Modern Art</td>
+					</tr>
+					<tr>
+						<td>Black Square</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>Spain</td>
+						<td>1931</td>
+						<td>KM</td>
+						<td>Modern Art</td>
+					</tr>
+					<tr>
+						<td>Broadway Boogie Woogie</td>
+						<td>Oil on linen</td>
+						<td>Bought</td>
+						<td>Russia</td>
+						<td>1915</td>
+						<td>PM</td>
+						<td>Modern Art</td>
+					</tr>
+					<tr>
+						<td>Les Demoiselles d'Avignon</td>
+						<td>Oil on canvas</td>
+						<td>Borrowed</td>
+						<td>USA</td>
+						<td>1943</td>
+						<td>PP</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>The Scream</td>
+						<td>Tempera on cardboard</td>
+						<td>Borrowed</td>
+						<td>Norway</td>
+						<td>1893</td>
+						<td>EM</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>The Scream</td>
+						<td>Screenprint</td>
+						<td>Bought</td>
+						<td>Norway</td>
+						<td>1893</td>
+						<td>AW</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>The Last Supper</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>USA</td>
+						<td>1984</td>
+						<td>SD</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>The Garden of Earthly Delights</td>
+						<td>Oil on wood panel</td>
+						<td>Bought</td>
+						<td>Italy</td>
+						<td>1498</td>
+						<td>SH</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>The Tortoise Trainer</td>
+						<td>Acrylic on canvas</td>
+						<td>Borrowed</td>
+						<td>Turkey</td>
+						<td>1906</td>
+						<td>OH</td>
+						<td>Historical and Mythological</td>
+					</tr>
+					<tr>
+						<td>Garden in the Evening</td>
+						<td>Oil on canvas</td>
+						<td>Bought</td>
+						<td>Turkey</td>
+						<td>1925</td>
+						<td>MC</td>
+						<td>Human Figures</td>
+					</tr>
+					<tr>
+						<td>I Know Not.I Know</td>
+						<td>Lithograph</td>
+						<td>Borrowed</td>
+						<td>Japan</td>
+						<td>1962</td>
+						<td>TM</td>
+						<td>Modern Art</td>
+					</tr>
+
+				</table>
+				<br>
+
+				<h4>Staff</h4>
+
+				<table border="2">
+
+					<tr>
+						<th>S_ID</th>
+						<th>Name</th>
+						<th>Surname</th>
+						<th>Salary</th>
+						<th>Position</th>
+						<th>Contact_Info</th>
+					</tr>
+
+					<tr>
+						<td>TB90C</td>
+						<td>Tom</td>
+						<td>Baker</td>
+						<td>90000.00</td>
+						<td>Curator</td>
+						<td>(201) 555-0123</td>
+					</tr>
+					<tr>
+						<td>CO60C</td>
+						<td>Clara</td>
+						<td>Oswald</td>
+						<td>60000.00</td>
+						<td>Conservator</td>
+						<td>(202) 555-0456</td>
+					</tr>
+					<tr>
+						<td>SF55R</td>
+						<td>Susan</td>
+						<td>Foreman</td>
+						<td>55000.00</td>
+						<td>Registrar</td>
+						<td>(203) 555-0789</td>
+					</tr>
+					<tr>
+						<td>SJS75D</td>
+						<td>Sarah Jane</td>
+						<td>Smith</td>
+						<td>75000.00</td>
+						<td>Designer</td>
+						<td>(204) 555-0012</td>
+					</tr>
+					<tr>
+						<td>JG55C</td>
+						<td>Jo</td>
+						<td>Grant</td>
+						<td>55000.00</td>
+						<td>Coordinator</td>
+						<td>(205) 555-0345</td>
+					</tr>
+					<tr>
+						<td>AP50E</td>
+						<td>Amelia</td>
+						<td>Pond</td>
+						<td>50000.00</td>
+						<td>Educator</td>
+						<td>(206) 555-0678</td>
+					</tr>
+					<tr>
+						<td>RW40T</td>
+						<td>Rory</td>
+						<td>Williams</td>
+						<td>40000.00</td>
+						<td>Technician</td>
+						<td>(207) 555-0901</td>
+					</tr>
+					<tr>
+						<td>RT35S</td>
+						<td>Rose</td>
+						<td>Tyler</td>
+						<td>35000.00</td>
+						<td>Security</td>
+						<td>(208) 555-0234</td>
+					</tr>
+					<tr>
+						<td>IC35S</td>
+						<td>Ian</td>
+						<td>Chesterton</td>
+						<td>35000.00</td>
+						<td>Security</td>
+						<td>(209) 555-0567</td>
+					</tr>
+					<tr>
+						<td>BW25C</td>
+						<td>Barbara</td>
+						<td>Wright</td>
+						<td>25000.00</td>
+						<td>Cleaning</td>
+						<td>(210) 555-0890</td>
+					</tr>
+					<tr>
+						<td>PC70C</td>
+						<td>Peter</td>
+						<td>Capaldi</td>
+						<td>70000.00</td>
+						<td>Conservator</td>
+						<td>(211) 555-0123</td>
+					</tr>
+					<tr>
+						<td>MJ40G</td>
+						<td>Martha</td>
+						<td>Johns</td>
+						<td>40000.00</td>
+						<td>Guide</td>
+						<td>(212) 555-0456</td>
+					</tr>
+					<tr>
+						<td>MS40G</td>
+						<td>Matt</td>
+						<td>Smith</td>
+						<td>40000.00</td>
+						<td>Guide</td>
+						<td>(213) 555-0789</td>
+					</tr>
+					<tr>
+						<td>DN40G</td>
+						<td>Donna</td>
+						<td>Noble</td>
+						<td>40000.00</td>
+						<td>Guide</td>
+						<td>(214) 555-0012</td>
+					</tr>
+					<tr>
+						<td>DT45T</td>
+						<td>David</td>
+						<td>Tennant</td>
+						<td>45000.00</td>
+						<td>Technician</td>
+						<td>(215) 555-0345</td>
+					</tr>
+					<tr>
+						<td>CE30C</td>
+						<td>Chris</td>
+						<td>Eccleston</td>
+						<td>30000.00</td>
+						<td>Cleaning</td>
+						<td>(216) 555-0678</td>
+					</tr>
+					<tr>
+						<td>RS65R</td>
+						<td>River</td>
+						<td>Song</td>
+						<td>65000.00</td>
+						<td>Registrar</td>
+						<td>(217) 555-0901</td>
+					</tr>
+					<tr>
+						<td>JS80C</td>
+						<td>John</td>
+						<td>Smith</td>
+						<td>80000.00</td>
+						<td>Curator</td>
+						<td>(218) 555-0234</td>
+					</tr>
+					<tr>
+						<td>MP25C</td>
+						<td>Melody</td>
+						<td>Pond</td>
+						<td>25000.00</td>
+						<td>Cleaning</td>
+						<td>(219) 555-0567</td>
+					</tr>
+					<tr>
+						<td>BP25C</td>
+						<td>Bill</td>
+						<td>Potts</td>
+						<td>45000.00</td>
+						<td>Cook</td>
+						<td>(220) 555-0890</td>
+					</tr>
+					<tr>
+						<td>KS45S</td>
+						<td>Kate</td>
+						<td>Stewart</td>
+						<td>45000.00</td>
+						<td>Security</td>
+						<td>(221) 555-0123</td>
+					</tr>
+					<tr>
+						<td>WM60M</td>
+						<td>Wilfred</td>
+						<td>Mott</td>
+						<td>60000.00</td>
+						<td>Manager</td>
+						<td>(222) 555-0456</td>
+					</tr>
+					<tr>
+						<td>JH35S</td>
+						<td>Jack</td>
+						<td>Harkness</td>
+						<td>35000.00</td>
+						<td>Server</td>
+						<td>(234) 423-1352</td>
+					</tr>
+
+				</table>
+
+
+				<h4>Museum Sections</h4>
+
+				<table border="2">
+
+					<tr>
+						<th>Section_ID</th>
+						<th>Location</th>
+					</tr>
+
+					<tr>
+						<td>101</td>
+						<td>Serenity</td>
+					</tr>
+					<tr>
+						<td>102</td>
+						<td>Reflections</td>
+					</tr>
+					<tr>
+						<td>103</td>
+						<td>Echoes</td>
+					</tr>
+					<tr>
+						<td>104</td>
+						<td>Rebellion</td>
+					</tr>
+					<tr>
+						<td>105</td>
+						<td>Restrooms</td>
+					</tr>
+					<tr>
+						<td>106</td>
+						<td>Lockers</td>
+					</tr>
+					<tr>
+						<td>107</td>
+						<td>Restaurant</td>
+					</tr>
+					<tr>
+						<td>108</td>
+						<td>Souvenir_Shop</td>
+					</tr>
+
+				</table>
+
+
+
+
+				<h4>Visitors </h4>
+
+				<table border="2">
+
+					<tr>
+						<th>V_ID</th>
+						<th>Name</th>
+						<th>Surname</th>
+						<th>Contact_Info</th>
+						<th>Date_of_Visit</th>
+						<th>Birth_Date</th>
+					</tr>
+
+					<tr>
+						<td>200001</td>
+						<td>Jay</td>
+						<td>Pritchett</td>
+						<td>(682) 902-9967</td>
+						<td>2024-01-03</td>
+						<td>1960-06-12</td>
+					</tr>
+					<tr>
+						<td>200002</td>
+						<td>Claire</td>
+						<td>Dunphy</td>
+						<td>(383) 372-7950</td>
+						<td>2024-01-08</td>
+						<td>1975-08-19</td>
+					</tr>
+					<tr>
+						<td>200003</td>
+						<td>Gloria</td>
+						<td>Delgado-Pritchett</td>
+						<td>(218) 462-8506</td>
+						<td>2024-01-03</td>
+						<td>1978-06-06</td>
+					</tr>
+					<tr>
+						<td>200030</td>
+						<td>Phil</td>
+						<td>Dunphy</td>
+						<td>(223) 996-5529</td>
+						<td>2024-01-15</td>
+						<td>1972-08-18</td>
+					</tr>
+					<tr>
+						<td>200004</td>
+						<td>Manny</td>
+						<td>Delgado</td>
+						<td>NULL</td>
+						<td>2024-01-18</td>
+						<td>2007-09-13</td>
+					</tr>
+					<tr>
+						<td>200005</td>
+						<td>Dylan</td>
+						<td>Marshall</td>
+						<td>(313) 760-7941</td>
+						<td>2024-02-06</td>
+						<td>1997-08-21</td>
+					</tr>
+					<tr>
+						<td>200006</td>
+						<td>Mitchell</td>
+						<td>Pritchett</td>
+						<td>(958) 868-8487</td>
+						<td>2024-03-18</td>
+						<td>1981-08-08</td>
+					</tr>
+					<tr>
+						<td>200007</td>
+						<td>Alex</td>
+						<td>Dunphy</td>
+						<td>NULL</td>
+						<td>2024-03-29</td>
+						<td>2001-12-04</td>
+					</tr>
+					<tr>
+						<td>200008</td>
+						<td>Haley</td>
+						<td>Dunphy</td>
+						<td>(958) 347-1147</td>
+						<td>2024-04-06</td>
+						<td>1998-07-24</td>
+					</tr>
+					<tr>
+						<td>200009</td>
+						<td>Luke</td>
+						<td>Dunphy</td>
+						<td>NULL</td>
+						<td>2024-01-15</td>
+						<td>2007-04-18</td>
+					</tr>
+					<tr>
+						<td>200031</td>
+						<td>Cameron</td>
+						<td>Tucker</td>
+						<td>(272) 865-2942</td>
+						<td>2024-03-18</td>
+						<td>1980-05-03</td>
+					</tr>
+					<tr>
+						<td>200011</td>
+						<td>Lily</td>
+						<td>Tucker-Pritchett</td>
+						<td>NULL</td>
+						<td>2024-03-18</td>
+						<td>2019-02-08</td>
+					</tr>
+					<tr>
+						<td>200010</td>
+						<td>Rory</td>
+						<td>Gilmore</td>
+						<td>(514) 743-4983</td>
+						<td>2024-05-16</td>
+						<td>2002-04-28</td>
+					</tr>
+					<tr>
+						<td>200012</td>
+						<td>Jess</td>
+						<td>Mariona</td>
+						<td>(233) 877-7121</td>
+						<td>2024-05-17</td>
+						<td>2001-03-21</td>
+					</tr>
+					<tr>
+						<td>200013</td>
+						<td>Dean</td>
+						<td>Forrester</td>
+						<td>(893) 205-2272</td>
+						<td>2024-05-19</td>
+						<td>2000-04-20</td>
+					</tr>
+					<tr>
+						<td>200014</td>
+						<td>Lorelai</td>
+						<td>Gilmore</td>
+						<td>(291) 489-1622</td>
+						<td>2024-05-29</td>
+						<td>1976-03-19</td>
+					</tr>
+					<tr>
+						<td>200015</td>
+						<td>Luke</td>
+						<td>Danes</td>
+						<td>(539) 893-7497</td>
+						<td>2024-06-30</td>
+						<td>1970-07-20</td>
+					</tr>
+					<tr>
+						<td>200016</td>
+						<td>Paris</td>
+						<td>Geller</td>
+						<td>(924) 361-9946</td>
+						<td>2024-08-12</td>
+						<td>2002-01-30</td>
+					</tr>
+					<tr>
+						<td>200017</td>
+						<td>April</td>
+						<td>Nardini</td>
+						<td>NULL</td>
+						<td>2024-06-30</td>
+						<td>2008-12-12</td>
+					</tr>
+					<tr>
+						<td>200018</td>
+						<td>Lane</td>
+						<td>Kim</td>
+						<td>(590) 607-8944</td>
+						<td>2024-08-23</td>
+						<td>2001-05-15</td>
+					</tr>
+					<tr>
+						<td>200019</td>
+						<td>Logan</td>
+						<td>Huntzberger</td>
+						<td>(255) 251-6983</td>
+						<td>2024-09-05</td>
+						<td>2000-11-06</td>
+					</tr>
+					<tr>
+						<td>200020</td>
+						<td>Christopher</td>
+						<td>Hayden</td>
+						<td>(220) 570-4067</td>
+						<td>2024-09-17</td>
+						<td>1976-10-17</td>
+					</tr>
+					<tr>
+						<td>200021</td>
+						<td>Emily</td>
+						<td>Gilmore</td>
+						<td>(472) 518-6169</td>
+						<td>2024-09-24</td>
+						<td>1956-02-02</td>
+					</tr>
+					<tr>
+						<td>200022</td>
+						<td>Richard</td>
+						<td>Gilmore</td>
+						<td>(228) 985-8116</td>
+						<td>2024-10-09</td>
+						<td>1953-01-01</td>
+					</tr>
+					<tr>
+						<td>200023</td>
+						<td>Michel</td>
+						<td>Gerard</td>
+						<td>(979) 677-8703</td>
+						<td>2024-10-10</td>
+						<td>1979-09-22</td>
+					</tr>
+					<tr>
+						<td>200024</td>
+						<td>Zack Van</td>
+						<td>Gerbig</td>
+						<td>(918) 672-1662</td>
+						<td>2024-10-20</td>
+						<td>1999-02-21</td>
+					</tr>
+					<tr>
+						<td>200025</td>
+						<td>Sookie</td>
+						<td>James</td>
+						<td>(585) 261-5393</td>
+						<td>2024-11-01</td>
+						<td>1979-05-06</td>
+					</tr>
+				</table>
+
+
+				<h4>Artists </h4>
+
+				<table border="2">
+
+					<tr>
+						<th>Artist_ID</th>
+						<th>Name</th>
+						<th>Surname</th>
+						<th>Nationality</th>
+						<th>Birth_Date</th>
+						<th>Death_Date</th>
+					</tr>
+
+					<tr>
+						<td>VVG</td>
+						<td>Vincent</td>
+						<td>van Gogh</td>
+						<td>Dutch</td>
+						<td>1853</td>
+						<td>1890</td>
+					</tr>
+					<tr>
+						<td>KM</td>
+						<td>Kazimir</td>
+						<td>Malevich</td>
+						<td>Russian</td>
+						<td>1879</td>
+						<td>1935</td>
+					</tr>
+					<tr>
+						<td>CM</td>
+						<td>Claude</td>
+						<td>Monet</td>
+						<td>French</td>
+						<td>1840</td>
+						<td>1926</td>
+					</tr>
+					<tr>
+						<td>JC</td>
+						<td>John</td>
+						<td>Constable</td>
+						<td>British</td>
+						<td>1776</td>
+						<td>1837</td>
+					</tr>
+					<tr>
+						<td>EG</td>
+						<td>El</td>
+						<td>Greco</td>
+						<td>Greek-Spanish</td>
+						<td>1541</td>
+						<td>1614</td>
+					</tr>
+					<tr>
+						<td>LDV</td>
+						<td>Leonardo</td>
+						<td>da Vinci</td>
+						<td>Italian</td>
+						<td>1452</td>
+						<td>1519</td>
+					</tr>
+					<tr>
+						<td>JV</td>
+						<td>Johannes</td>
+						<td>Vermeer</td>
+						<td>Dutch</td>
+						<td>1632</td>
+						<td>1675</td>
+					</tr>
+					<tr>
+						<td>FK</td>
+						<td>Frida</td>
+						<td>Kahlo</td>
+						<td>Mexican</td>
+						<td>1907</td>
+						<td>1954</td>
+					</tr>
+					<tr>
+						<td>GW</td>
+						<td>Grant</td>
+						<td>Wood</td>
+						<td>American</td>
+						<td>1891</td>
+						<td>1942</td>
+					</tr>
+					<tr>
+						<td>RM</td>
+						<td>René</td>
+						<td>Magritte</td>
+						<td>Belgian</td>
+						<td>1898</td>
+						<td>1967</td>
+					</tr>
+					<tr>
+						<td>SB</td>
+						<td>Sandro</td>
+						<td>Botticelli</td>
+						<td>Italian</td>
+						<td>1445</td>
+						<td>1510</td>
+					</tr>
+					<tr>
+						<td>AW</td>
+						<td>Andy</td>
+						<td>Warhol</td>
+						<td>American</td>
+						<td>1928</td>
+						<td>1987</td>
+					</tr>
+					<tr>
+						<td>PP</td>
+						<td>Pablo</td>
+						<td>Picasso</td>
+						<td>Spanish</td>
+						<td>1881</td>
+						<td>1973</td>
+					</tr>
+					<tr>
+						<td>MB</td>
+						<td>Michelangelo</td>
+						<td>Buonarroti</td>
+						<td>Italian</td>
+						<td>1475</td>
+						<td>1564</td>
+					</tr>
+					<tr>
+						<td>HB</td>
+						<td>Hieronymus</td>
+						<td>Bosch</td>
+						<td>Dutch</td>
+						<td>1450</td>
+						<td>1516</td>
+					</tr>
+					<tr>
+						<td>WK</td>
+						<td>Wassily</td>
+						<td>Kandinsky</td>
+						<td>Russian</td>
+						<td>1866</td>
+						<td>1944</td>
+					</tr>
+					<tr>
+						<td>SD</td>
+						<td>Salvador</td>
+						<td>Dali</td>
+						<td>Spanish</td>
+						<td>1904</td>
+						<td>1989</td>
+					</tr>
+					<tr>
+						<td>PM</td>
+						<td>Piet</td>
+						<td>Mondrian</td>
+						<td>Dutch</td>
+						<td>1872</td>
+						<td>1944</td>
+					</tr>
+					<tr>
+						<td>SH</td>
+						<td>Steve</td>
+						<td>Huston</td>
+						<td>American</td>
+						<td>1961</td>
+						<td>NULL</td>
+					</tr>
+					<tr>
+						<td>OH</td>
+						<td>Osman</td>
+						<td>Hamdi</td>
+						<td>Turkish</td>
+						<td>1842</td>
+						<td>1910</td>
+					</tr>
+					<tr>
+						<td>MC</td>
+						<td>Melek</td>
+						<td>Celal</td>
+						<td>Turkish</td>
+						<td>1901</td>
+						<td>1978</td>
+					</tr>
+					<tr>
+						<td>TM</td>
+						<td>Takashi</td>
+						<td>Murakami</td>
+						<td>Japanese</td>
+						<td>1962</td>
+						<td>NULL</td>
+					</tr>
+
+				</table>
+
+				<h4>Visiting Time</h4>
+
+				<table border="2">
+
+					<tr>
+						<th>Time Slots</th>
+						<th>Days</th>
+						<th>ID</th>
+					</tr>
+
+					<tr>
+						<td>09.00-12.00</td>
+						<td>Weekdays</td>
+						<td>W0912</td>
+					</tr>
+					<tr>
+						<td>12.00-15.00</td>
+						<td>Weekdays</td>
+						<td>W1215</td>
+					</tr>
+					<tr>
+						<td>15.00-18.00</td>
+						<td>Weekdays</td>
+						<td>W1518</td>
+					</tr>
+					<tr>
+						<td>18.00-20.00</td>
+						<td>Weekdays</td>
+						<td>W1820</td>
+					</tr>
+					<tr>
+						<td>09.00-12.00</td>
+						<td>Weekends</td>
+						<td>WE0912</td>
+					</tr>
+					<tr>
+						<td>12.00-15.00</td>
+						<td>Weekends</td>
+						<td>WE0913</td>
+					</tr>
+					<tr>
+						<td>15.00-18.00</td>
+						<td>Weekends</td>
+						<td>WE0914</td>
+					</tr>
+					<tr>
+						<td>NULL</td>
+						<td>Monday</td>
+						<td>M900</td>
+					</tr>
+
+				</table>
+			</div>
+		</section>
+	</div>
+	<h2 align="center" style="color:#e71fd3"><a href="#m__top" rel=""> GO BACK TO TOP </a></h2>
+	<section id="m_portfolio">
+		<div class="m_container">
+			<h3 class="m_text-uppercase" id="m__relation-tables">
+				RELATIONS TABLES
+			</h3>
+			<hr class="m_dark-star-line">
+
+			<h4>Belongs To</h4>
+			<table border="2">
+				<tr>
+					<th>Title</th>
+					<th>Technique</th>
+					<th>Artists_ID</th>
+				</tr>
+
+				<tr>
+					<td>Starry Night Over the Rhône</td>
+					<td>Oil on canvas</td>
+					<td>Nature</td>
+				</tr>
+				<tr>
+					<td>Water Lilies</td>
+					<td>Oil on canvas</td>
+					<td>Nature</td>
+				</tr>
+				<tr>
+					<td>The Hay Wain</td>
+					<td>Oil on canvas</td>
+					<td>Nature</td>
+				</tr>
+				<tr>
+					<td>View of Toledo</td>
+					<td>Oil on canvas</td>
+					<td>Nature</td>
+				</tr>
+				<tr>
+					<td>Mona Lisa</td>
+					<td>Oil on canvas</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>Girl with a Pearl Earring</td>
+					<td>Oil on poplar panel</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>Self-Portrait with Thorn Necklace and Hummingbird</td>
+					<td>Oil on canvas</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>American Gothic</td>
+					<td>Oil on canvas</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>The Son of Man</td>
+					<td>Oil on beaverboard</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>The Birth of Venus</td>
+					<td>Oil on canvas</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>The Last Supper</td>
+					<td>Tempera on canvas</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>Guernica</td>
+					<td>Tempera and oil on plaster</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>The Creation of Adam</td>
+					<td>Oil on canvas</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>The Garden of Earthly Delights</td>
+					<td>Fresco</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>Composition VII</td>
+					<td>Oil on oak panel</td>
+					<td>Modern Art</td>
+				</tr>
+				<tr>
+					<td>The Persistence of Memory</td>
+					<td>Oil on canvas</td>
+					<td>Modern Art</td>
+				</tr>
+				<tr>
+					<td>Black Square</td>
+					<td>Oil on canvas</td>
+					<td>Modern Art</td>
+				</tr>
+				<tr>
+					<td>Broadway Boogie Woogie</td>
+					<td>Oil on linen</td>
+					<td>Modern Art</td>
+				</tr>
+				<tr>
+					<td>Les Demoiselles d'Avignon</td>
+					<td>Oil on canvas</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>The Scream</td>
+					<td>Tempera on cardboard</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>The Scream</td>
+					<td>Screenprint</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>The Last Supper</td>
+					<td>Oil on canvas</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>The Garden of Earthly Delights</td>
+					<td>Oil on wood panel</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>The Tortoise Trainer</td>
+					<td>Acrylic on canvas</td>
+					<td>Historical and Mythological</td>
+				</tr>
+				<tr>
+					<td>Garden in the Evening</td>
+					<td>Oil on canvas</td>
+					<td>Human Figures</td>
+				</tr>
+				<tr>
+					<td>I Know Not. I Know</td>
+					<td>Lithograph</td>
+					<td>Modern Art</td>
+				</tr>
+
+			</table>
+
+			<h4>Owned</h4>
+			<table border="2">
+				<tr>
+					<th>Title</th>
+					<th>Medium</th>
+					<th>Artist Initials</th>
+				</tr>
+				<tr>
+					<td>Starry Night Over the Rhône</td>
+					<td>Oil on canvas</td>
+					<td>VVG</td>
+				</tr>
+				<tr>
+					<td>Water Lilies</td>
+					<td>Oil on canvas</td>
+					<td>CM</td>
+				</tr>
+				<tr>
+					<td>The Hay Wain</td>
+					<td>Oil on canvas</td>
+					<td>JC</td>
+				</tr>
+				<tr>
+					<td>View of Toledo</td>
+					<td>Oil on canvas</td>
+					<td>EG</td>
+				</tr>
+				<tr>
+					<td>Mona Lisa</td>
+					<td>Oil on canvas</td>
+					<td>LDV</td>
+				</tr>
+				<tr>
+					<td>Girl with a Pearl Earring</td>
+					<td>Oil on poplar panel</td>
+					<td>JV</td>
+				</tr>
+				<tr>
+					<td>Self-Portrait with Thorn Necklace and Hummingbird</td>
+					<td>Oil on canvas</td>
+					<td>FK</td>
+				</tr>
+				<tr>
+					<td>American Gothic</td>
+					<td>Oil on canvas</td>
+					<td>GW</td>
+				</tr>
+				<tr>
+					<td>The Son of Man</td>
+					<td>Oil on beaverboard</td>
+					<td>RM</td>
+				</tr>
+				<tr>
+					<td>The Birth of Venus</td>
+					<td>Oil on canvas</td>
+					<td>SB</td>
+				</tr>
+				<tr>
+					<td>The Last Supper</td>
+					<td>Tempera on canvas</td>
+					<td>LDV</td>
+				</tr>
+				<tr>
+					<td>Guernica</td>
+					<td>Tempera and oil on plaster</td>
+					<td>PP</td>
+				</tr>
+				<tr>
+					<td>The Creation of Adam</td>
+					<td>Oil on canvas</td>
+					<td>MB</td>
+				</tr>
+				<tr>
+					<td>The Garden of Earthly Delights</td>
+					<td>Fresco</td>
+					<td>HB</td>
+				</tr>
+				<tr>
+					<td>Composition VII</td>
+					<td>Oil on oak panel</td>
+					<td>WK</td>
+				</tr>
+				<tr>
+					<td>The Persistence of Memory</td>
+					<td>Oil on canvas</td>
+					<td>SD</td>
+				</tr>
+				<tr>
+					<td>Black Square</td>
+					<td>Oil on canvas</td>
+					<td>KM</td>
+				</tr>
+				<tr>
+					<td>Broadway Boogie Woogie</td>
+					<td>Oil on linen</td>
+					<td>PM</td>
+				</tr>
+				<tr>
+					<td>Les Demoiselles d'Avignon</td>
+					<td>Oil on canvas</td>
+					<td>PP</td>
+				</tr>
+				<tr>
+					<td>The Scream</td>
+					<td>Tempera on cardboard</td>
+					<td>EM</td>
+				</tr>
+				<tr>
+					<td>The Scream</td>
+					<td>Screenprint</td>
+					<td>AW</td>
+				</tr>
+				<tr>
+					<td>The Last Supper</td>
+					<td>Oil on canvas</td>
+					<td>SD</td>
+				</tr>
+				<tr>
+					<td>The Garden of Earthly Delights</td>
+					<td>Oil on wood panel</td>
+					<td>SH</td>
+				</tr>
+				<tr>
+					<td>The Tortoise Trainer</td>
+					<td>Acrylic on canvas</td>
+					<td>OH</td>
+				</tr>
+				<tr>
+					<td>Garden in the Evening</td>
+					<td>Oil on canvas</td>
+					<td>MC</td>
+				</tr>
+			</table>
+
+			<body>
+				<h4>Ticket Fees</h4>
+				<table border="2">
+					<tr>
+						<th>Visiting Time ID</th>
+						<th>Visiting Age Group</th>
+						<th>Ticket Type</th>
+					</tr>
+					<tr>
+						<td>W0912</td>
+						<td>0-12 and 65 over</td>
+						<td>Discounted Price</td>
+					</tr>
+					<tr>
+						<td>W1215</td>
+						<td>0-12 and 65 over</td>
+						<td>Discounted Price</td>
+					</tr>
+					<tr>
+						<td>W1518</td>
+						<td>0-12 and 65 over</td>
+						<td>Discounted Price</td>
+					</tr>
+					<tr>
+						<td>W1820</td>
+						<td>0-12 and 65 over</td>
+						<td>Discounted Price</td>
+					</tr>
+					<tr>
+						<td>WE0912</td>
+						<td>12-65</td>
+						<td>Fully Price</td>
+					</tr>
+					<tr>
+						<td>WE0913</td>
+						<td>12-65</td>
+						<td>Fully Price</td>
+					</tr>
+					<tr>
+						<td>WE0914</td>
+						<td>12-65</td>
+						<td>Fully Price</td>
+					</tr>
+					<tr>
+						<td>M900</td>
+						<td>Not available</td>
+						<td>Not available</td>
+					</tr>
+				</table>
+
+
+				<h4>In_Relation</h4>
+
+				<table border="2">
+
+					<tr>
+						<th>Theme</th>
+						<th>Section ID</th>
+					</tr>
+
+					<tr>
+						<td>Nature</td>
+						<td>101</td>
+					</tr>
+					<tr>
+						<td>Human Figures</td>
+						<td>102</td>
+					</tr>
+					<tr>
+						<td>Historical and Mythological</td>
+						<td>103</td>
+					</tr>
+					<tr>
+						<td>Modern Art</td>
+						<td>104</td>
+					</tr>
+
+				</table>
+
+
+				<h4>Works In </h4>
+
+				<table border="2">
+
+					<tr>
+						<th>S.ID</th>
+						<th>Section ID</th>
+					</tr>
+					<tr>
+						<td>TB90C</td>
+						<td>101</td>
+					</tr>
+					<tr>
+						<td>CO60C</td>
+						<td>102</td>
+					</tr>
+					<tr>
+						<td>SF55R</td>
+						<td>103</td>
+					</tr>
+					<tr>
+						<td>SJS75D</td>
+						<td>104</td>
+					</tr>
+					<tr>
+						<td>JG55C</td>
+						<td>105</td>
+					</tr>
+					<tr>
+						<td>AP50E</td>
+						<td>106</td>
+					</tr>
+					<tr>
+						<td>RW40T</td>
+						<td>107</td>
+					</tr>
+					<tr>
+						<td>RT35S</td>
+						<td>108</td>
+					</tr>
+					<tr>
+						<td>IC35S</td>
+						<td>101</td>
+					</tr>
+					<tr>
+						<td>BW25C</td>
+						<td>102</td>
+					</tr>
+					<tr>
+						<td>PC70C</td>
+						<td>103</td>
+					</tr>
+					<tr>
+						<td>MJ40G</td>
+						<td>104</td>
+					</tr>
+					<tr>
+						<td>MS40G</td>
+						<td>105</td>
+					</tr>
+					<tr>
+						<td>DN40G</td>
+						<td>106</td>
+					</tr>
+					<tr>
+						<td>DT45T</td>
+						<td>107</td>
+					</tr>
+					<tr>
+						<td>CE30C</td>
+						<td>108</td>
+					</tr>
+					<tr>
+						<td>RS65R</td>
+						<td>101</td>
+					</tr>
+					<tr>
+						<td>JS80C</td>
+						<td>102</td>
+					</tr>
+					<tr>
+						<td>MP25C</td>
+						<td>103</td>
+					</tr>
+					<tr>
+						<td>BP25C</td>
+						<td>104</td>
+					</tr>
+					<tr>
+						<td>KS45S</td>
+						<td>105</td>
+					</tr>
+					<tr>
+						<td>WM60M</td>
+						<td>106</td>
+					</tr>
+					<tr>
+						<td>JH35S</td>
+						<td>107</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4> Presentation time: </h4>
+				<table border="2">
+					<tr>
+						<th>Theme</th>
+						<th>Visiting_Time.ID</th>
+					</tr>
+					<tr>
+						<td>Nature</td>
+						<td>W0912</td>
+					</tr>
+					<tr>
+						<td>Human Figures</td>
+						<td>W1820</td>
+					</tr>
+					<tr>
+						<td>Historical and Mythological</td>
+						<td>WE0914</td>
+					</tr>
+					<tr>
+						<td>Modern Art</td>
+						<td>WE0914</td>
+					</tr>
+					<tr>
+						<td>'Nature</td>
+						<td>WE0912</td>
+					</tr>
+					<tr>
+						<td>Human Figures</td>
+						<td>W1518</td>
+					</tr>
+					<tr>
+						<td>Historical and Mythological</td>
+						<td>W1215</td>
+					</tr>
+					<tr>
+						<td>Modern Art</td>
+						<td>W1820</td>
+					</tr>
+					<tr>
+						<td>Nature</td>
+						<td>WE0913</td>
+					</tr>
+					<tr>
+						<td>Human Figures</td>
+						<td>W1518</td>
+					</tr>
+					<tr>
+						<td>Historical and Mythological</td>
+						<td>WE0914</td>
+					</tr>
+					<tr>
+						<td>Modern Art</td>
+						<td>WE0912</td>
+					</tr>
+					<tr>
+						<td>Nature</td>
+						<td>WE0913</td>
+					</tr>
+					<tr>
+						<td>Human Figures</td>
+						<td>W1820</td>
+					</tr>
+					<tr>
+						<td>'Historical and Mythological</td>
+						<td>WE0914</td>
+					</tr>
+					<tr>
+						<td>Modern Art</td>
+						<td>W1215</td>
+					</tr>
+
+				</table>
+		</div>
+	</section>
+	</div>
+	<h2 align="center" style="color:#e71fd3"><a href="#m__top" rel=""> GO BACK TO TOP </a></h2>
+	<section id="m_portfolio">
+		<div class="m_container">
+			<h3 class="m_text-uppercase" id="m__queries">
+				Queries
+			</h3>
+			<hr class="m_dark-star-line"><br>
+			<p align="justify"><b>A query that applies a row and column selection to a single table.<br>
+					Question 1: Write a query for all attributes for Artworks whose created year is before 1900.<br></b>
+				SELECT * <br>
+				FROM Artworks<br>
+				WHERE Year_Created <1900 </p>
+
+					<table>
+						<tr>
+							<th>Title</th>
+							<th>Technique</th>
+							<th>Status</th>
+							<th>Origin</th>
+							<th>Year_Created</th>
+							<th>Artist_ID</th>
+							<th>Theme</th>
+						</tr>
+						<tr>
+							<td>Composition VII</td>
+							<td>Oil on oak panel</td>
+							<td>Bought</td>
+							<td>Netherlands</td>
+							<td>1503</td>
+							<td>WK</td>
+							<td>Modern Art</td>
+						</tr>
+						<tr>
+							<td>Girl with a Pearl Earring</td>
+							<td>Oil on poplar panel</td>
+							<td>Borrowed</td>
+							<td>Italy</td>
+							<td>1503</td>
+							<td>JV</td>
+							<td>Human Figures</td>
+						</tr>
+						<tr>
+							<td>Guernica</td>
+							<td>Tempera and oil on plaster</td>
+							<td>Bought</td>
+							<td>Italy</td>
+							<td>1498</td>
+							<td>PP</td>
+							<td>Historical and Mythological</td>
+						</tr>
+						<tr>
+							<td>Mona Lisa</td>
+							<td>Oil on canvas</td>
+							<td>Borrowed</td>
+							<td>Spain</td>
+							<td>1600</td>
+							<td>LDV</td>
+							<td>Human Figures</td>
+						</tr>
+						<tr>
+							<td>Self-Portrait with Thorn Necklace and Hummingbird</td>
+							<td>Oil on canvas</td>
+							<td>Bought</td>
+							<td>Netherlands</td>
+							<td>1665</td>
+							<td>FK</td>
+							<td>Human Figures</td>
+						</tr>
+						<tr>
+							<td>Starry Night Over the Rhône</td>
+							<td>Oil on canvas</td>
+							<td>Borrowed</td>
+							<td>Netherlands</td>
+							<td>1889</td>
+							<td>WG</td>
+							<td>Nature</td>
+						</tr>
+						<tr>
+							<td>The Garden of Earthly Delights</td>
+							<td>Fresco</td>
+							<td>Borrowed</td>
+							<td>Italy</td>
+							<td>1512</td>
+							<td>HB</td>
+							<td>Historical and Mythological</td>
+						</tr>
+						<tr>
+							<td>The Garden of Earthly Delights</td>
+							<td>Oil on wood panel</td>
+							<td>Bought</td>
+							<td>Italy</td>
+							<td>1498</td>
+							<td>SH</td>
+							<td>Historical and Mythological</td>
+						</tr>
+						<tr>
+							<td>The Last Supper</td>
+							<td>Tempera on canvas</td>
+							<td>Borrowed</td>
+							<td>Italy</td>
+							<td>1486</td>
+							<td>LDV</td>
+							<td>Historical and Mythological</td>
+						</tr>
+						<tr>
+							<td>The Scream</td>
+							<td>Screenprint</td>
+							<td>Bought</td>
+							<td>Norway</td>
+							<td>1893</td>
+							<td>AW</td>
+							<td>Human Figures</td>
+						</tr>
+						<tr>
+							<td>The Scream</td>
+							<td>Tempera on cardboard</td>
+							<td>Borrowed</td>
+							<td>Norway</td>
+							<td>1893</td>
+							<td>EM</td>
+							<td>Human Figures</td>
+						</tr>
+						<tr>
+							<td>The Scream</td>
+							<td>Tempera on cardboard</td>
+							<td>Borrowed</td>
+							<td>Norway</td>
+							<td>1893</td>
+							<td>EM</td>
+							<td>Human Figures</td>
+						</tr>
+						<tr>
+							<td>View of Toledo</td>
+							<td>Oil on canvas</td>
+							<td>Bought</td>
+							<td>England</td>
+							<td>1821</td>
+							<td>EG</td>
+							<td>Nature</td>
+						</tr>
+						<tr>
+							<td>Water Lilies</td>
+							<td>Oil on canvas</td>
+							<td>Borrowed</td>
+							<td>France</td>
+							<td>1888</td>
+							<td>CM</td>
+							<td>Nature</td>
+						</tr>
+					</table>
+
+					<p align="justify"><b>A query that takes the join of two tables and does row and column selection and
+							ordering.<br>
+							Question 2: Retrieve the titles and techniques of artworks, along with the nationalities of whose owners
+							(artists), for artists whose nationalities contain the letter 'e'. Order the results based on the
+							nationalities of artists.</b><br>
+						SELECT Title, Technique, Nationality<br>
+						FROM Artworks INNER JOIN Artists ON Artworks.Artist_ID=Artists.Artist_ID<br>
+						WHERE Nationality LIKE '%e%'<br>
+						ORDER BY Nationality<br>
+					</p>
+					<table>
+						<tr>
+							<th>Title</th>
+							<th>Technique</th>
+							<th>Nationality</th>
+						</tr>
+						<tr>
+							<td>The scream</td>
+							<td>Screenprint</td>
+							<td>American</td>
+						</tr>
+						<tr>
+							<td>American Gothic</td>
+							<td>Oil on canvas</td>
+							<td>American</td>
+						</tr>
+						<tr>
+							<td>The Garden of Earthly Delights</td>
+							<td>Oil on woods panel</td>
+							<td>American</td>
+						</tr>
+						<tr>
+							<td>The Son of Man</td>
+							<td>Oil on beaverboard</td>
+							<td>Belgian</td>
+						</tr>
+						<tr>
+							<td>Water Lilies</td>
+							<td>Oil on canvas</td>
+							<td>French</td>
+						</tr>
+						<tr>
+							<td>View of Toledo</td>
+							<td>Oil on canvas</td>
+							<td>Greek-Spanish</td>
+						</tr>
+						<tr>
+							<td>I Know Not. I Know</td>
+							<td>Lithograph</td>
+							<td>Japanese</td>
+						</tr>
+						<tr>
+							<td>Self-Portrait with Thorn Necklace and Hummingbird</td>
+							<td>Oil on canvas</td>
+							<td>Mexican</td>
+						</tr>
+					</table>
+
+					<p align="justify"><b>Repeat the previous task but this time your query should take the join of three
+							tables. <br>
+							Question 3: Based on the results associated with the given SQL query, write a query to display the
+							titles and techniques of artworks, nationalities of whose owners, and the name of the exhibition where
+							the artwork belongs to it. Sort the results based on the name of the titles of artworks. </b><br>
+						SELECT Title, Technique, Nationality, Exhibitions.Name<br>
+						FROM Artworks INNER JOIN Artists ON Artworks.Artist_ID=Artists.Artist_ID INNER JOIN Exhibitions ON
+						Artworks.theme=Exhibitions.theme <br>
+						ORDER BY Title <br>
+					</p>
+					<table>
+						<tr>
+							<th>Title</th>
+							<th>Technique</th>
+							<th>Nationality</th>
+							<th>Exhibition Name</th>
+						</tr>
+						<tr>
+							<td>Black Square</td>
+							<td>Oil on canvas</td>
+							<td>Russian</td>
+							<td>Rebellion</td>
+						</tr>
+						<tr>
+							<td>Broadway Boogie Woogie</td>
+							<td>Oil on linen</td>
+							<td>Dutch</td>
+							<td>Rebellion</td>
+						</tr>
+						<tr>
+							<td>Composition VII</td>
+							<td>Oil on oak panel</td>
+							<td>Russian</td>
+							<td>Rebellion</td>
+						</tr>
+						<tr>
+							<td>I Know Not. I Know</td>
+							<td>Lithograph</td>
+							<td>Japanese</td>
+							<td>Rebellion</td>
+						</tr>
+						<tr>
+							<td>The Persistence of Memory</td>
+							<td>Oil on canvas</td>
+							<td>Spanish</td>
+							<td>Rebellion</td>
+						</tr>
+						<tr>
+							<td>View of Toledo</td>
+							<td>Oil on canvas</td>
+							<td>Greek-Spanish</td>
+							<td>Serenity</td>
+						</tr>
+						<tr>
+							<td>Water Lilies</td>
+							<td>Oil on canvas</td>
+							<td>French</td>
+							<td>Serenity</td>
+						</tr>
+					</table>
+					<p align="justify"><b> Write a query involving outer join, row selection and group selection.<br>
+							Question 4: Write a query about artworks which do not belong to an exhibition. Display the titles and
+							techniques of artworks, and the name of the exhibition.</b><br>
+						SELECT Title, Technique , Exhibitions.Name<br>
+						FROM Artworks LEFT OUTER JOIN Exhibitions ON Artworks.theme=Exhibitions.theme<br>
+						WHERE Exhibitions.theme IS NULL <br>
+					</p>
+					<table>
+						<tr>
+							<th>Title</th>
+							<th>Technique</th>
+							<th>Section</th>
+						</tr>
+						<tr>
+							<td>American Gothic</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>Garden in the Evening</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>Girl with a Pearl Earring</td>
+							<td>Oil on poplar panel</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>Guernica</td>
+							<td>Tempera and oil on plaster</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>Les Demoiselles d'Avignon</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>Mona Lisa</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>Self-Portrait with Thorn Necklace and Hummingbird</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Birth of Venus</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Creation of Adam</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Garden of Earthly Delights</td>
+							<td>Fresco</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Garden of Earthly Delights</td>
+							<td>Oil on wood panel</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Last Supper</td>
+							<td>Oil on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Last Supper</td>
+							<td>Tempera on canvas</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Scream</td>
+							<td>Screenprint</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Scream</td>
+							<td>Tempera on cardboard</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Son of Man</td>
+							<td>Oil on beaverboard</td>
+							<td>NULL</td>
+						</tr>
+						<tr>
+							<td>The Tortoise Trainer</td>
+							<td>Acrylic on canvas</td>
+							<td>NULL</td>
+						</tr>
+					</table>
+					<p align="justify"><b>Write a query involving join, grouping, group selection and having. <br>
+							Question 6: Retrieve Total number of visitors grouped by their visiting date, and filter the results to
+							only include visiting date with number of visitors smaller than 2.</b><br>
+						SELECT Date_of_Visit AS visiting_date, Count(Date_of_Visit) AS num_of_visitors<br>
+						FROM Visitors<br>
+						GROUP BY Date_of_Visit<br>
+						HAVING Count(Date_of_Visit) < 2<br>
+							<br>
+					</p>
+					<table>
+						<tr>
+							<th>Date</th>
+							<th>Value</th>
+						</tr>
+
+						<tr>
+							<td>2024-01-08</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-01-18</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-02-06</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-03-29</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-04-06</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-05-17</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-05-19</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-05-29</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-07-21</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-08-12</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-08-23</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-09-05</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-09-17</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-09-24</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-10-09</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-10-10</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-10-20</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-11-01</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-11-04</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-11-06</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2024-12-02</td>
+							<td>1</td>
+						</tr>
+
+					</table>
+</body>
+
+</html>

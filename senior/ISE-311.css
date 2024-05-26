@@ -1,0 +1,400 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 8px;
+
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    /* font kalınlığı*/
+    line-height: 1.5;
+    background-color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    /*tüm a etiketlerini kapsayacak şekilde olsun istiyoruz, altı çizili olmasın!*/
+    text-decoration: none;
+	color:#C0EB11;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+
+.clearfix::after {
+    /* navbar'ı yaparken, alta sığmadı bu şekilde clearfix alan oluşturduk.*/
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container {
+    width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.col {
+    float: left;
+    width: 100%;
+    padding: 1rem;
+
+}
+
+@media (min-width: 576px) {
+    
+    .container {
+        max-width: 540px;
+    }
+
+    html {
+        font-size: 7px;
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .container {
+        max-width: 720px;
+    } 
+    
+    html {
+        font-size: 8px;
+    }
+
+    .col {
+        width: 50%;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    
+    .container {
+        max-width: 960px;
+    }
+
+    html {
+        font-size: 9px;
+    }
+
+    .col {
+        width: 33.333%;
+    }
+
+}
+
+@media (min-width: 1200px) {
+
+    .container {
+        max-width: 1140px;
+    }
+    
+    html {
+        font-size: 10px;
+    }
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+/*NAVBAR'I YAZIYORUM*/
+nav {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #2C3E4F;
+    color: #fff;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    position: fixed;
+    /* sayfa aşağı inse de navbar bizle geliyor.*/
+    /*Ama yıldız navbara taşıyor bu nedenle z-index kullanıp, navbarın her şeyin üzerinde olmasını sağlıyoruz.*/
+    z-index: 500;
+}
+
+#logo-box {
+    float: left;
+    padding-top: .5rem;
+}
+
+#logo-box .logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2.8rem;
+}
+
+#nav-links {
+    float: right;
+}
+
+#nav-links .nav-item {
+    float: left;
+    /* yatay bir şekilde sıralamak istiyoruz.*/
+    margin: 0.5rem;
+    /* aralarında boşluk olmasını istiyoruz*/
+
+}
+
+#nav-links .nav-link {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: block;
+    padding: 1.6rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    transition: color 0.4s;
+}
+
+#nav-links .nav-link:hover {
+    color:  #DAF7A6;
+}
+
+
+
+
+hr.star-line {
+    border-color: #fff;
+}
+
+hr.dark-star-line {
+    border-color:#DAF7A6;
+}
+
+.star-line,
+.dark-star-line {
+    border: none;
+    border-top: 0.4rem solid #fff;
+    max-width: 25rem;
+    border-radius: 10px;
+    margin: 2.5rem auto;
+    /*çizgiyi ortalamak için kullandım.*/
+    overflow: visible;
+    /*yıldızın yarısı çizgide kaldı, visible yaptım görünsğn diye.*/
+    height: 0;
+    /* yıldız ile çizgi arasındaki yükseklik farkı yok oldu*/
+}
+
+.star-line::after {
+    color: #fff;
+    background-color: #DAF7A6;
+}
+
+.dark-star-line::after {
+    color: #DAF7A6;
+    background-color: #fff;
+}
+
+.star-line::after,
+.dark-star-line::after {
+    /*star-line dan sonra geleceği için bunu kullandık.*/
+    content: "\2605";
+
+    font-weight: 900;
+    font-size: 32px;
+    position: relative;
+    /* yıldızı çizginin üzerine çıkarmak için position ı relative verdik
+    sonra yukarıya taşımak için top değerini eksili olacak şekilde verdim*/
+    top: -28px;
+    padding: 0 8px;
+    /* background-color: #1ABC9B; /* yıldızın kenarlarını boşalttık.*/
+}
+
+#portfolio {
+
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    text-align: center;
+
+}
+
+#portfolio h2 {
+    font-size: 3.5rem;
+    color: #2D3D4F;
+}
+
+.p-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.col {
+    float: left;
+    /* yan yana dizmek için kullandım,resimleri*/
+    width: 33.3333%;
+    /* normal durumda sayfada 3 tane görsel olacak.*/
+    /* kutular arasında boşluğu margin ile verebiliriz ama yüzdelik hesabı yapmam gerekecek.
+    yani yukarıda tanımladığım genişliğin azalması gerekir. bu nedenle padding kullanıcam.*/
+    /*colun içerisien eleman verdiğimizde olur.*/
+    padding: 10px;
+
+
+}
+
+.p-item {
+    position: relative
+        /*resim ve ikon üst üste geldi bunun için relative yaptık.*/
+
+}
+
+.p-item img {
+    display: block;
+    border-radius: 13px;
+}
+
+/*.p-item .p-img5{
+    height:260px;
+    width: 350px;
+}*/
+/*.p-item .p-img2{
+    height:260px;
+    width: 356.6px;
+}*/
+.p-item .p-img4 {
+    height: 260px;
+    width: 356.6px;
+}
+
+/*.p-item .p-img10{
+    height:260px;
+    width: 356.6px;
+}*/
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color:  #DAF7A6;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.img-overlay .icon {
+    color: #fff;
+    font-size: 8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+span{color:#FC19BE  }
+em{color:blue}
+.p-item:hover .img-overlay {
+    opacity: 0.8;
+    /* görselin üzerine gelindiğinde alt tarafta hafif görsel çıksın diye opacity i 1 den azalttım*/
+    border-radius: 12px;
+}
+#about {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    text-align: center;
+    background-color: #DAF7A6;
+    color:#2c3e4f;
+
+}
+#about ul{font-size:2.0rem; align="justify"}
+
+#about-text{
+    text-align: left;
+
+}
+#about-text .left{
+    float:left;
+    width:50%;
+    padding-right: 2rem;
+    padding-left:22rem;
+}
+#about-text .right{
+    float:right;
+    width:50%;
+    padding-right: 22rem;
+    padding-left:2rem;
+}
+#about-text{
+    font-size: 2rem;
+}
+@media (min-width: 992px) {
+    #about-text .left {
+        float: left;
+        width: 50%;
+        padding-right: 10px;
+        padding-left: 210px;
+    }
+
+    #about-text .right {
+        float: right;
+        width: 50%;
+        padding-right: 210px;
+        padding-left: 10px;
+    }
+}
+
+
+
+
+footer{
+    padding-top:6rem;/*öncelikle üstten boşluk bırakıyoıruz.*/
+    padding-bottom:6rem;
+    background-color: #2C3E4F;
+    color:white;
+    text-align: center;
+}
+
+footer h4{
+    font-size: 2.4rem;
+}
+footer p{
+    font-size: 1.7rem;
+    margin-top: 1rem;
+}
+
+footer li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.copyright {
+    background-color: #19262F;
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
+    color: #fff;
+    text-align: center;
+}
+.question-container {
+    max-width: 800px;
+    margin: 0 auto; /* Center the container horizontally */
+    text-align: left; /* Align text to the left within the container */
+    margin-bottom: 20px;}
+	
+ul li {
+	max-width: 1000px;
+    margin: 0 auto; /* Center the container horizontally */
+    text-align: left; /* Align text to the left within the container */
+    margin-bottom: 20px;
+
+	
+}
